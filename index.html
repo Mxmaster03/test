@@ -528,6 +528,61 @@
       transform: scale(1.04);
     }
 
+    .editorial-grid {
+      display: grid;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .editorial-copy {
+      padding: 0.5rem 0.25rem;
+    }
+
+    .editorial-copy h3 {
+      margin: 0 0 0.9rem;
+      font-size: clamp(2rem, 4.2vw, 3.6rem);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+    }
+
+    .editorial-copy p {
+      margin: 0 0 1rem;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 1.02rem;
+    }
+
+    .editorial-mosaic {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.85rem;
+    }
+
+    .mosaic-card {
+      overflow: hidden;
+      border-radius: 28px;
+      min-height: 220px;
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      box-shadow: var(--shadow);
+    }
+
+    .mosaic-card.tall {
+      grid-row: span 2;
+      min-height: 460px;
+    }
+
+    .mosaic-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .mosaic-card:hover img {
+      transform: scale(1.03);
+    }
+
     .showcase-panel {
       min-height: 78vh;
       padding: clamp(1.6rem, 3vw, 2.4rem);
@@ -731,6 +786,10 @@
       .photo-card.wide {
         grid-column: span 2;
       }
+
+      .editorial-grid {
+        grid-template-columns: 0.9fr 1.1fr;
+      }
     }
 
     @media (max-width: 767px) {
@@ -759,6 +818,11 @@
       .photo-card.wide {
         grid-column: auto;
         aspect-ratio: 0.78;
+      }
+
+      .mosaic-card.tall {
+        grid-row: auto;
+        min-height: 220px;
       }
     }
 
@@ -789,6 +853,7 @@
         <div class="nav-links">
           <a href="#features">Work</a>
           <a href="#showcase">Stories</a>
+          <a href="#portfolio">Portfolio</a>
           <a href="#about">About</a>
           <a href="#contact">Contact</a>
         </div>
@@ -822,12 +887,12 @@
                     <p>Subtle scroll reveals, restrained gradients, and soft glass surfaces create a premium feel without distracting from the work.</p>
                     <div class="stats">
                       <div class="stat">
-                        <strong>4K</strong>
-                        <span>visual-first layout</span>
+                        <strong>25</strong>
+                        <span>uploaded images used</span>
                       </div>
                       <div class="stat">
                         <strong>100%</strong>
-                        <span>responsive polish</span>
+                        <span>portfolio-first polish</span>
                       </div>
                     </div>
                   </div>
@@ -884,7 +949,7 @@
           </div>
 
           <div class="showcase-flow">
-            <article class="showcase-panel reveal" style="--bg-image: url('https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1800&q=80');">
+            <article class="showcase-panel reveal" style="--bg-image: url('Images/5442EDC8-C8A2-48CC-9057-F1929F8A4D3C_1_105_c.jpeg');">
               <div class="showcase-content">
                 <span>Collection One</span>
                 <h3>Light, softened.</h3>
@@ -892,7 +957,7 @@
               </div>
             </article>
 
-            <article class="showcase-panel reveal" style="--bg-image: url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1800&q=80');">
+            <article class="showcase-panel reveal" style="--bg-image: url('Images/68EC720A-0C3A-4619-B72C-789DC0D576EA_1_105_c.jpeg');">
               <div class="showcase-content">
                 <span>Collection Two</span>
                 <h3>Form, framed with restraint.</h3>
@@ -900,13 +965,58 @@
               </div>
             </article>
 
-            <article class="showcase-panel reveal" style="--bg-image: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=1800&q=80');">
+            <article class="showcase-panel reveal" style="--bg-image: url('Images/8797B104-1FAB-45F2-91B1-C369E829B0A3_1_105_c.jpeg');">
               <div class="showcase-content">
                 <span>Collection Three</span>
                 <h3>Premium by design.</h3>
                 <p>Every panel is oversized, tactile, and polished so the site feels closer to a luxury brand launch than a typical personal portfolio.</p>
               </div>
             </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="gallery" id="portfolio">
+        <div class="container">
+          <div class="section-heading reveal">
+            <h2>A wider portfolio, arranged with more presence.</h2>
+            <p>A denser image section gives your visitors more work to explore immediately while preserving the quiet, premium rhythm of the site.</p>
+          </div>
+
+          <div class="photo-grid">
+            <figure class="photo-card wide reveal"><img src="Images/0A6AE797-3628-4FC6-86D9-933A8C1CDB08_4_5005_c.jpeg" alt="C_Studio03 portfolio image 1"></figure>
+            <figure class="photo-card reveal"><img src="Images/4F1DD9F9-0FFE-4F04-B02C-7158A7DE29FC_4_5005_c.jpeg" alt="C_Studio03 portfolio image 2"></figure>
+            <figure class="photo-card reveal"><img src="Images/5A0CBAAF-D574-4D93-9BF0-2172F86C5F75_4_5005_c.jpeg" alt="C_Studio03 portfolio image 3"></figure>
+            <figure class="photo-card reveal"><img src="Images/6F27F0B1-4A8A-408C-98D6-99EF4A773255_4_5005_c.jpeg" alt="C_Studio03 portfolio image 4"></figure>
+            <figure class="photo-card reveal"><img src="Images/7E4B9304-B5F6-49AB-AAE1-1699E9DC2C5E_4_5005_c.jpeg" alt="C_Studio03 portfolio image 5"></figure>
+            <figure class="photo-card wide reveal"><img src="Images/8115334D-A2FA-4974-88EB-A9D578D5A09F_4_5005_c.jpeg" alt="C_Studio03 portfolio image 6"></figure>
+            <figure class="photo-card reveal"><img src="Images/994ABEF4-FC59-4C77-A70C-1C7E0E8D6371_4_5005_c.jpeg" alt="C_Studio03 portfolio image 7"></figure>
+            <figure class="photo-card reveal"><img src="Images/A375B930-F6FC-4EFC-9777-107347367815_1_105_c.jpeg" alt="C_Studio03 portfolio image 8"></figure>
+            <figure class="photo-card reveal"><img src="Images/A7324B82-178D-4ABE-810D-AB6EDA3D276B_1_105_c.jpeg" alt="C_Studio03 portfolio image 9"></figure>
+            <figure class="photo-card reveal"><img src="Images/A77E421D-A6B5-4AC8-9043-28B46C14CEC7_1_105_c.jpeg" alt="C_Studio03 portfolio image 10"></figure>
+            <figure class="photo-card reveal"><img src="Images/AC9EBEFB-F560-4F69-B176-7065CC00C70D_4_5005_c.jpeg" alt="C_Studio03 portfolio image 11"></figure>
+            <figure class="photo-card wide reveal"><img src="Images/B0D987AC-88A4-48CE-8DDC-CE36270D2A81_4_5005_c.jpeg" alt="C_Studio03 portfolio image 12"></figure>
+          </div>
+        </div>
+      </section>
+
+      <section id="moments">
+        <div class="container">
+          <div class="editorial-grid">
+            <div class="editorial-copy reveal">
+              <div class="eyebrow">Editorial Sequence</div>
+              <h3>More sections. More imagery. Still restrained.</h3>
+              <p>This additional chapter turns the site into a fuller visual experience. It feels closer to a premium campaign rollout, with multiple moments to pause, scan, and immerse in the work.</p>
+              <p>By using more of your photography across different compositions, the website feels custom, substantial, and unmistakably yours.</p>
+            </div>
+            <div class="editorial-mosaic">
+              <figure class="mosaic-card tall reveal"><img src="Images/B788608B-49B4-43CB-9038-4C78DF5FF130_4_5005_c.jpeg" alt="C_Studio03 editorial image 1"></figure>
+              <figure class="mosaic-card reveal"><img src="Images/CB85FF7C-7A4F-4D08-8385-19483A8702F2_1_105_c.jpeg" alt="C_Studio03 editorial image 2"></figure>
+              <figure class="mosaic-card reveal"><img src="Images/DA7FBE35-6CC3-46A8-B6E9-35054DABDF5E_1_105_c.jpeg" alt="C_Studio03 editorial image 3"></figure>
+              <figure class="mosaic-card reveal"><img src="Images/DAE26B57-1CEF-4006-91F0-F8AADCCB694F_1_105_c.jpeg" alt="C_Studio03 editorial image 4"></figure>
+              <figure class="mosaic-card tall reveal"><img src="Images/DD20ED27-5E37-4500-847D-2B4B43B7A7C3_1_105_c.jpeg" alt="C_Studio03 editorial image 5"></figure>
+              <figure class="mosaic-card reveal"><img src="Images/ECBD894C-D6CA-4906-A239-4DD5509D872E_4_5005_c.jpeg" alt="C_Studio03 editorial image 6"></figure>
+            </div>
           </div>
         </div>
       </section>
