@@ -116,7 +116,7 @@
       transform: scale(1.08);
       background:
         linear-gradient(180deg, rgba(10, 10, 10, 0.4), rgba(10, 10, 10, 0.58)),
-        url("https://picsum.photos/seed/luxury-hero/1800/2400") center/cover no-repeat;
+        url("Images/8DF74177-8772-4CCB-B15B-FFC5255C7EA0_1_102_o.jpeg") center 32%/cover no-repeat;
       will-change: transform;
     }
 
@@ -245,47 +245,41 @@
       display: grid;
       grid-template-columns: repeat(12, 1fr);
       gap: 1rem;
-      grid-auto-flow: dense;
+      align-items: start;
     }
 
     .portfolio-item {
       overflow: hidden;
       border-radius: 22px;
       background: var(--bg-soft);
-      min-height: 320px;
       position: relative;
     }
 
     .portfolio-item.large {
-      grid-column: span 7;
-      grid-row: span 2;
-      min-height: 680px;
+      grid-column: span 5;
     }
 
     .portfolio-item.medium {
-      grid-column: span 5;
-      min-height: 330px;
+      grid-column: span 4;
     }
 
     .portfolio-item.tall {
-      grid-column: span 4;
-      grid-row: span 2;
-      min-height: 680px;
+      grid-column: span 3;
     }
 
     .portfolio-item.wide {
-      grid-column: span 8;
-      min-height: 380px;
+      grid-column: span 6;
     }
 
     .portfolio-item.small {
-      grid-column: span 4;
-      min-height: 300px;
+      grid-column: span 3;
     }
 
     .portfolio-item img {
-      height: 100%;
-      object-fit: cover;
+      aspect-ratio: 3 / 4;
+      height: auto;
+      object-fit: contain;
+      background: var(--bg-soft);
       transition: transform 0.6s ease;
     }
 
@@ -453,8 +447,6 @@
       .portfolio-item.wide,
       .portfolio-item.small {
         grid-column: span 6;
-        grid-row: span 1;
-        min-height: 340px;
       }
     }
 
@@ -498,7 +490,6 @@
       .portfolio-item.wide,
       .portfolio-item.small {
         grid-column: auto;
-        min-height: 300px;
       }
 
       .submit-button {
@@ -525,7 +516,7 @@
     <section class="section reveal">
       <div class="container about-grid">
         <div class="about-photo">
-          <img src="https://picsum.photos/seed/about-portrait/900/1200" alt="Portrait of the photographer">
+          <img src="Images/14B84896-5A43-4A9B-A713-DDCE0307CF3A_1_105_c.jpeg" alt="Portrait of the photographer">
         </div>
         <div class="about-copy">
           <h2 class="section-title">About</h2>
@@ -544,13 +535,13 @@
         </div>
 
         <div class="portfolio-grid">
-          <article class="portfolio-item large"><img src="https://picsum.photos/seed/portfolio-01/1200/1600" alt="Portfolio image one"></article>
-          <article class="portfolio-item medium"><img src="https://picsum.photos/seed/portfolio-02/900/1200" alt="Portfolio image two"></article>
-          <article class="portfolio-item small"><img src="https://picsum.photos/seed/portfolio-03/900/1200" alt="Portfolio image three"></article>
-          <article class="portfolio-item tall"><img src="https://picsum.photos/seed/portfolio-04/900/1400" alt="Portfolio image four"></article>
-          <article class="portfolio-item wide"><img src="https://picsum.photos/seed/portfolio-05/1400/900" alt="Portfolio image five"></article>
-          <article class="portfolio-item small"><img src="https://picsum.photos/seed/portfolio-06/900/1200" alt="Portfolio image six"></article>
-          <article class="portfolio-item medium"><img src="https://picsum.photos/seed/portfolio-07/1000/1200" alt="Portfolio image seven"></article>
+          <article class="portfolio-item large"><img src="Images/5344E226-57CB-4069-A244-2A2ED79EA12F_1_105_c.jpeg" alt="Portfolio image one"></article>
+          <article class="portfolio-item medium"><img src="Images/606F208C-B2A5-4BF8-BA4E-EB7F048624BB_1_105_c.jpeg" alt="Portfolio image two"></article>
+          <article class="portfolio-item small"><img src="Images/6490D396-04E7-451C-B075-C563E0D20928_1_105_c.jpeg" alt="Portfolio image three"></article>
+          <article class="portfolio-item tall"><img src="Images/7D4DD3E6-7F04-4257-92B0-E0DCD3A5620B_1_105_c.jpeg" alt="Portfolio image four"></article>
+          <article class="portfolio-item wide"><img src="Images/904692C5-3D53-4F79-81B0-4BAF6D18D216_1_105_c.jpeg" alt="Portfolio image five"></article>
+          <article class="portfolio-item small"><img src="Images/98A2F6E2-D48B-4980-BFFA-1D8446B9A1EF_1_105_c.jpeg" alt="Portfolio image six"></article>
+          <article class="portfolio-item medium"><img src="Images/9EAEA4FF-160E-4568-B58D-9338DC25F9AC_1_105_c.jpeg" alt="Portfolio image seven"></article>
         </div>
       </div>
     </section>
