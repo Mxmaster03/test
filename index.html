@@ -82,8 +82,93 @@
       position: relative;
     }
 
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: background 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+    }
+
+    .site-header.is-scrolled {
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(10px);
+      border-bottom-color: rgba(201, 169, 110, 0.12);
+    }
+
+    .site-nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      min-height: 78px;
+      padding: 0 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .site-logo {
+      font-family: "Cormorant Garamond", serif;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 1rem;
+      font-weight: 600;
+      position: relative;
+      z-index: 1001;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .nav-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 0;
+      background: transparent;
+      padding: 0;
+      position: relative;
+      z-index: 1001;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 20px;
+      height: 1px;
+      margin: 5px auto;
+      background: var(--text);
+      transition: transform 220ms ease, opacity 220ms ease;
+    }
+
+    .nav-toggle.is-open span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    .nav-toggle.is-open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle.is-open span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
     .section {
       padding: 6rem 1.25rem;
+      scroll-margin-top: 110px;
     }
 
     .container {
@@ -420,14 +505,23 @@
     }
 
     .reveal {
-      opacity: 0;
-      transform: translateY(38px);
-      transition: opacity 900ms ease, transform 900ms ease;
+      opacity: 1;
+      transform: none;
     }
 
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .js-motion .reveal.visible {
+      animation: sectionFadeIn 900ms ease both;
+    }
+
+    @keyframes sectionFadeIn {
+      from {
+        opacity: 0.7;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @media (max-width: 960px) {
@@ -457,6 +551,44 @@
 
       body {
         cursor: auto;
+      }
+
+      .site-nav {
+        min-height: 70px;
+        padding: 0 1rem;
+      }
+
+      .nav-toggle {
+        display: inline-block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        display: grid;
+        gap: 0;
+        padding: 0.5rem 1rem 1rem;
+        background: rgba(10, 10, 10, 0.96);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(201, 169, 110, 0.12);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(-10px);
+        transition: opacity 220ms ease, transform 220ms ease, visibility 220ms ease;
+      }
+
+      .nav-links.is-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      .nav-links a {
+        padding: 0.9rem 0;
       }
 
       .cursor-dot {
@@ -502,7 +634,24 @@
   <div class="cursor-dot" id="cursor-dot"></div>
 
   <div class="page-shell">
-    <section class="hero">
+    <header class="site-header" id="site-header">
+      <nav class="site-nav">
+        <a class="site-logo" href="#top">C_Studio03</a>
+        <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="nav-links">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="nav-links" id="nav-links">
+          <a href="#work">Work</a>
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <section class="hero" id="top">
       <div class="hero-media" id="hero-media"></div>
       <div class="hero-overlay"></div>
       <div class="hero-content reveal">
@@ -513,7 +662,7 @@
       <div class="scroll-indicator" aria-hidden="true"></div>
     </section>
 
-    <section class="section reveal">
+    <section class="section reveal" id="about">
       <div class="container about-grid">
         <div class="about-photo">
           <img src="Images/14B84896-5A43-4A9B-A713-DDCE0307CF3A_1_105_c.jpeg" alt="Portrait of the photographer">
@@ -527,7 +676,7 @@
       </div>
     </section>
 
-    <section class="section reveal">
+    <section class="section reveal" id="work">
       <div class="container">
         <div class="section-header">
           <h2 class="section-title">Portfolio</h2>
@@ -546,7 +695,7 @@
       </div>
     </section>
 
-    <section class="section reveal">
+    <section class="section reveal" id="services">
       <div class="container">
         <div class="section-header">
           <h2 class="section-title">Services</h2>
@@ -570,7 +719,7 @@
       </div>
     </section>
 
-    <section class="section reveal">
+    <section class="section reveal" id="contact">
       <div class="container contact-grid">
         <div class="contact-copy">
           <h2 class="section-title">Contact</h2>
@@ -618,22 +767,31 @@
       document.body.classList.add("is-loaded");
     });
 
-    // Reveal sections as they enter the viewport.
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.14,
-      rootMargin: "0px 0px -8% 0px"
+    document.documentElement.classList.add("js-motion");
+
+    const revealElements = document.querySelectorAll(".reveal");
+    revealElements.forEach((element) => {
+      element.classList.add("visible");
     });
 
-    document.querySelectorAll(".reveal").forEach((element) => {
-      observer.observe(element);
-    });
+    // Keep sections visible by default. Observer only enhances motion when available.
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.14,
+        rootMargin: "0px 0px -50px 0px"
+      });
+
+      revealElements.forEach((element) => {
+        observer.observe(element);
+      });
+    }
 
     // Minimal custom gold cursor for desktop.
     const cursor = document.getElementById("cursor-dot");
@@ -647,11 +805,39 @@
 
     // Slow parallax motion on the hero image.
     const heroMedia = document.getElementById("hero-media");
+    const siteHeader = document.getElementById("site-header");
+    const navToggle = document.getElementById("nav-toggle");
+    const navLinks = document.getElementById("nav-links");
+
+    const updateHeaderState = () => {
+      if (window.scrollY > 80) {
+        siteHeader.classList.add("is-scrolled");
+      } else {
+        siteHeader.classList.remove("is-scrolled");
+      }
+    };
 
     window.addEventListener("scroll", () => {
       const offset = window.scrollY * 0.18;
       heroMedia.style.transform = `scale(1.08) translateY(${offset}px)`;
+      updateHeaderState();
     }, { passive: true });
+
+    updateHeaderState();
+
+    navToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("is-open");
+      navToggle.classList.toggle("is-open", isOpen);
+      navToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    document.querySelectorAll(".nav-links a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("is-open");
+        navToggle.classList.remove("is-open");
+        navToggle.setAttribute("aria-expanded", "false");
+      });
+    });
 
     // Prevent demo form submission.
     document.querySelector(".contact-form").addEventListener("submit", (event) => {
