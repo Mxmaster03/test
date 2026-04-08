@@ -3,30 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>C_Studio03</title>
-  <meta name="description" content="C_Studio03 is a premium photographic studio portfolio with refined storytelling, elegant motion, and Apple-inspired minimalism.">
+  <title>C_Studio03 | Luxury Photography Portfolio</title>
+  <meta name="description" content="A luxury editorial photography portfolio for C_Studio03.">
   <style>
-    @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap");
 
     :root {
-      --bg: #f5f5f7;
-      --surface: rgba(255, 255, 255, 0.72);
-      --surface-strong: rgba(255, 255, 255, 0.9);
-      --text: #111111;
-      --muted: #6e6e73;
-      --line: rgba(17, 17, 17, 0.08);
-      --blue: #5f9dff;
-      --blue-soft: rgba(95, 157, 255, 0.18);
-      --shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
-      --radius-xl: 32px;
-      --radius-lg: 24px;
-      --radius-md: 18px;
-      --max: 1240px;
-      --nav-h: 72px;
+      --bg: #0a0a0a;
+      --bg-soft: #121212;
+      --text: #f5f0e8;
+      --muted: rgba(245, 240, 232, 0.72);
+      --line: rgba(201, 169, 110, 0.28);
+      --gold: #c9a96e;
+      --gold-soft: rgba(201, 169, 110, 0.16);
+      --max-width: 1240px;
+      --radius: 28px;
+      --transition-slow: 600ms ease;
     }
 
     * {
       box-sizing: border-box;
+      cursor: none;
     }
 
     html {
@@ -35,19 +32,22 @@
 
     body {
       margin: 0;
-      font-family: "Outfit", "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-family: "Inter", sans-serif;
+      background: var(--bg);
       color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(95, 157, 255, 0.12), transparent 30%),
-        radial-gradient(circle at 85% 12%, rgba(255, 255, 255, 0.85), transparent 25%),
-        linear-gradient(180deg, #fbfbfd 0%, #f2f2f5 45%, #ffffff 100%);
-      min-height: 100vh;
+      line-height: 1.7;
       overflow-x: hidden;
+      opacity: 0;
+      transition: opacity 900ms ease;
+    }
+
+    body.is-loaded {
+      opacity: 1;
     }
 
     img {
-      max-width: 100%;
       display: block;
+      width: 100%;
     }
 
     a {
@@ -59,661 +59,277 @@
     input,
     textarea {
       font: inherit;
+      color: inherit;
+      cursor: none;
     }
 
-    .page-shell::before {
-      content: "";
+    .cursor-dot {
       position: fixed;
-      inset: -10% auto auto -10%;
-      width: 34rem;
-      height: 34rem;
-      background: radial-gradient(circle, rgba(95, 157, 255, 0.12), transparent 65%);
-      pointer-events: none;
-      z-index: 0;
-      filter: blur(24px);
-    }
-
-    .page-shell::after {
-      content: "";
-      position: fixed;
-      right: -10rem;
-      bottom: -10rem;
-      width: 28rem;
-      height: 28rem;
-      background: radial-gradient(circle, rgba(17, 17, 17, 0.04), transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-      filter: blur(12px);
-    }
-
-    .site-header {
-      position: sticky;
       top: 0;
-      z-index: 50;
-      backdrop-filter: saturate(180%) blur(20px);
-      background: rgba(245, 245, 247, 0.7);
-      border-bottom: 1px solid rgba(17, 17, 17, 0.04);
+      left: 0;
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: var(--gold);
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 120ms ease, opacity 160ms ease;
+      box-shadow: 0 0 18px rgba(201, 169, 110, 0.45);
     }
 
-    .nav {
-      max-width: var(--max);
-      margin: 0 auto;
-      min-height: var(--nav-h);
-      padding: 0 1.25rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-
-    .brand {
-      font-size: 1rem;
-      letter-spacing: -0.05em;
-      text-transform: none;
-      font-weight: 800;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      color: var(--muted);
-      font-size: 1rem;
-      font-weight: 500;
-    }
-
-    .nav-links a {
-      transition: color 220ms ease;
-    }
-
-    .nav-links a:hover,
-    .nav-links a:focus-visible {
-      color: var(--text);
-    }
-
-    main {
+    .page-shell {
       position: relative;
-      z-index: 1;
     }
 
-    section {
-      padding: 4.5rem 1.25rem;
+    .section {
+      padding: 6rem 1.25rem;
     }
 
     .container {
-      max-width: var(--max);
+      max-width: var(--max-width);
       margin: 0 auto;
+    }
+
+    .section-title,
+    .hero-name,
+    .service-title,
+    .footer-mark {
+      font-family: "Cormorant Garamond", serif;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 600;
     }
 
     .hero {
-      padding-top: clamp(4rem, 9vw, 7rem);
-      padding-bottom: clamp(3rem, 8vw, 6rem);
-    }
-
-    .hero-panel {
       position: relative;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
       overflow: hidden;
-      border-radius: 40px;
-      padding: clamp(2rem, 5vw, 4rem);
-      min-height: min(88vh, 860px);
-      display: grid;
-      align-items: center;
-      background:
-        linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.5)),
-        radial-gradient(circle at 70% 30%, rgba(95, 157, 255, 0.18), transparent 18%),
-        linear-gradient(180deg, rgba(17, 17, 17, 0.02), rgba(17, 17, 17, 0.05));
-      border: 1px solid rgba(255, 255, 255, 0.7);
-      box-shadow: var(--shadow);
-      isolation: isolate;
+      padding: 2rem 1.25rem;
     }
 
-    .hero-panel::before {
-      content: "";
-      position: absolute;
-      inset: auto -8% -18% auto;
-      width: min(54vw, 760px);
-      height: min(54vw, 760px);
-      background:
-        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.95) 0%, rgba(236, 240, 248, 0.85) 35%, rgba(226, 232, 240, 0.25) 56%, transparent 72%);
-      border-radius: 50%;
-      filter: blur(6px);
-      opacity: 0.95;
-      transform: translateZ(0);
-    }
-
-    .hero-grid {
-      position: relative;
-      display: grid;
-      gap: 2rem;
-      z-index: 1;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      width: fit-content;
-      padding: 0.45rem 0.8rem;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.72);
-      border: 1px solid rgba(17, 17, 17, 0.05);
-      color: #4f5665;
-      font-size: 0.78rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      backdrop-filter: blur(14px);
-    }
-
-    .hero-copy {
-      max-width: 52rem;
-      text-align: center;
-      margin: 0 auto;
-      width: 100%;
-    }
-
-    .hero h1 {
-      margin: 1.25rem 0 1rem;
-      font-size: clamp(3.4rem, 8.8vw, 8.25rem);
-      line-height: 1.08;
-      letter-spacing: -0.045em;
-      font-weight: 800;
-    }
-
-    .hero h1 .accent {
-      display: block;
-      margin-top: 0.24em;
-      background: linear-gradient(90deg, #1776ff 0%, #5560ff 45%, #a04cff 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .hero p {
-      margin: 0 auto;
-      max-width: 42rem;
-      font-size: clamp(1.08rem, 2vw, 1.55rem);
-      line-height: 1.48;
-      color: var(--muted);
-      font-weight: 400;
-    }
-
-    .hero-actions {
-      margin-top: 2rem;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.9rem;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 158px;
-      min-height: 54px;
-      padding: 0.95rem 1.5rem;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      font-size: 0.98rem;
-      font-weight: 600;
-      transition: transform 240ms ease, box-shadow 240ms ease, background 240ms ease, border-color 240ms ease, color 240ms ease;
-      cursor: pointer;
-    }
-
-    .button-primary {
-      color: #fff;
-      background: linear-gradient(180deg, #1677ff 0%, #0d63ec 100%);
-      box-shadow: 0 14px 30px rgba(13, 99, 236, 0.24);
-    }
-
-    .button-secondary {
-      color: var(--text);
-      background: rgba(255, 255, 255, 0.8);
-      border-color: rgba(17, 17, 17, 0.08);
-      backdrop-filter: blur(14px);
-    }
-
-    .button:hover,
-    .button:focus-visible {
-      transform: translateY(-2px);
-    }
-
-    .button-primary:hover,
-    .button-primary:focus-visible {
-      box-shadow: 0 20px 40px rgba(13, 99, 236, 0.28);
-    }
-
-    .hero-visual {
-      margin-top: clamp(2rem, 5vw, 3.2rem);
-      display: grid;
-      gap: 1rem;
-      grid-template-columns: 1.25fr 0.75fr;
-      align-items: stretch;
-    }
-
-    .media-card,
-    .glass-card,
-    .showcase-panel,
-    .contact-panel,
-    .about-card {
-      border-radius: var(--radius-xl);
-      background: var(--surface);
-      border: 1px solid rgba(255, 255, 255, 0.65);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(20px);
-    }
-
-    .media-card {
-      position: relative;
-      min-height: 420px;
-      overflow: hidden;
-      background:
-        linear-gradient(180deg, rgba(17, 17, 17, 0.02), rgba(17, 17, 17, 0.16)),
-        url("Images/8DF74177-8772-4CCB-B15B-FFC5255C7EA0_1_102_o.jpeg") center 36%/cover;
-    }
-
-    .media-card,
-    .feature-visual,
-    .showcase-panel,
-    .photo-card img,
-    .mosaic-card img {
-      cursor: zoom-in;
-    }
-
-    .media-card::after {
-      content: "Signature Frame";
-      position: absolute;
-      left: 1.5rem;
-      bottom: 1.5rem;
-      padding: 0.55rem 0.85rem;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.85);
-      color: #111;
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-    }
-
-    .glass-stack {
-      display: grid;
-      gap: 1rem;
-    }
-
-    .glass-card {
-      padding: 1.35rem;
-    }
-
-    .glass-card h3,
-    .about-card h3,
-    .contact-panel h3 {
-      margin: 0 0 0.55rem;
-      font-size: 1.15rem;
-      letter-spacing: -0.03em;
-    }
-
-    .glass-card p,
-    .about-card p,
-    .contact-panel p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.65;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.9rem;
-      margin-top: 1rem;
-    }
-
-    .stat {
-      padding: 1rem;
-      border-radius: 22px;
-      background: rgba(255, 255, 255, 0.65);
-      border: 1px solid rgba(17, 17, 17, 0.05);
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 1.65rem;
-      letter-spacing: -0.05em;
-      margin-bottom: 0.2rem;
-    }
-
-    .stat span {
-      color: var(--muted);
-      font-size: 0.94rem;
-    }
-
-    .section-heading {
-      margin-bottom: 2.4rem;
-      text-align: center;
-    }
-
-    .section-heading h2 {
-      margin: 0 0 0.9rem;
-      font-size: clamp(2.2rem, 5vw, 4.4rem);
-      line-height: 1.02;
-      letter-spacing: -0.065em;
-      font-weight: 800;
-    }
-
-    .section-heading p {
-      max-width: 42rem;
-      margin: 0 auto;
-      color: var(--muted);
-      font-size: clamp(1rem, 1.8vw, 1.15rem);
-      line-height: 1.7;
-    }
-
-    .feature-list {
-      display: grid;
-      gap: 1.2rem;
-    }
-
-    .feature-row {
-      display: grid;
-      gap: 1.5rem;
-      align-items: center;
-      padding: 1rem;
-    }
-
-    .feature-visual {
-      min-height: 380px;
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      position: relative;
-      background-color: #ddd;
-      box-shadow: var(--shadow);
-    }
-
-    .feature-visual::before {
-      content: "";
+    .hero-media {
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(17, 17, 17, 0.22));
-      z-index: 1;
+      transform: scale(1.08);
+      background:
+        linear-gradient(180deg, rgba(10, 10, 10, 0.4), rgba(10, 10, 10, 0.58)),
+        url("https://picsum.photos/seed/luxury-hero/1800/2400") center/cover no-repeat;
+      will-change: transform;
     }
 
-    .feature-visual::after {
-      content: attr(data-label);
+    .hero-overlay {
       position: absolute;
-      left: 1.4rem;
-      bottom: 1.4rem;
+      inset: 0;
+      background:
+        radial-gradient(circle at center, transparent 0%, rgba(10, 10, 10, 0.08) 45%, rgba(10, 10, 10, 0.52) 100%);
+    }
+
+    .hero-content {
+      position: relative;
       z-index: 2;
-      padding: 0.55rem 0.9rem;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.9);
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.03em;
+      text-align: center;
+      max-width: 60rem;
     }
 
-    .feature-visual.one {
-      background:
-        linear-gradient(180deg, rgba(17, 17, 17, 0.05), rgba(17, 17, 17, 0.15)),
-        url("Images/14B84896-5A43-4A9B-A713-DDCE0307CF3A_1_105_c.jpeg") center 28%/cover;
-    }
-
-    .feature-visual.two {
-      background:
-        linear-gradient(180deg, rgba(17, 17, 17, 0.04), rgba(17, 17, 17, 0.18)),
-        url("Images/5344E226-57CB-4069-A244-2A2ED79EA12F_1_105_c.jpeg") center 26%/cover;
-    }
-
-    .feature-visual.three {
-      background:
-        linear-gradient(180deg, rgba(17, 17, 17, 0.04), rgba(17, 17, 17, 0.2)),
-        url("Images/606F208C-B2A5-4BF8-BA4E-EB7F048624BB_1_105_c.jpeg") center 30%/cover;
-    }
-
-    .feature-copy {
-      padding: 0.5rem 0.25rem;
-    }
-
-    .feature-copy span {
-      display: block;
-      margin-bottom: 0.6rem;
-      color: #516170;
-      font-size: 0.8rem;
-      letter-spacing: 0.14em;
+    .hero-kicker {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: var(--gold);
+      letter-spacing: 0.28em;
       text-transform: uppercase;
-      font-weight: 600;
+      font-size: 0.78rem;
     }
 
-    .feature-copy h3 {
-      margin: 0 0 0.8rem;
-      font-size: clamp(1.9rem, 4vw, 3.25rem);
-      line-height: 1.05;
-      letter-spacing: -0.065em;
-      font-weight: 800;
-    }
-
-    .feature-copy p {
+    .hero-name {
       margin: 0;
+      font-size: clamp(3.3rem, 10vw, 8rem);
+      line-height: 0.92;
+    }
+
+    .hero-subtitle {
+      margin: 1.5rem auto 0;
+      max-width: 38rem;
       color: var(--muted);
-      font-size: 1.03rem;
-      line-height: 1.75;
+      font-size: clamp(1rem, 2vw, 1.18rem);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      width: 1px;
+      height: 84px;
+      background: rgba(245, 240, 232, 0.18);
+      transform: translateX(-50%);
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    .scroll-indicator::after {
+      content: "";
+      position: absolute;
+      top: -100%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, transparent, var(--gold), transparent);
+      animation: scrollLine 2s infinite;
+    }
+
+    @keyframes scrollLine {
+      0% { top: -100%; }
+      100% { top: 120%; }
+    }
+
+    .section-header {
+      margin-bottom: 2.5rem;
+    }
+
+    .section-title {
+      margin: 0 0 0.8rem;
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      line-height: 0.98;
+    }
+
+    .section-copy {
+      max-width: 40rem;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .about-photo {
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: var(--bg-soft);
+      min-height: 620px;
+    }
+
+    .about-photo img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .about-copy {
+      padding: 1rem 0;
+    }
+
+    .about-copy h2 {
+      margin: 0 0 1.25rem;
+    }
+
+    .about-copy p {
+      margin: 0 0 1.1rem;
+      color: var(--muted);
       max-width: 34rem;
     }
 
-    .showcase {
-      padding-top: 2rem;
+    .about-signature {
+      margin-top: 2rem;
+      color: var(--gold);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
     }
 
-    .showcase-flow {
+    .portfolio-grid {
       display: grid;
+      grid-template-columns: repeat(12, 1fr);
       gap: 1rem;
+      grid-auto-flow: dense;
     }
 
-    .gallery {
-      padding-top: 2rem;
-    }
-
-    .photo-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.85rem;
-    }
-
-    .photo-card {
-      position: relative;
+    .portfolio-item {
       overflow: hidden;
-      border-radius: 28px;
-      background: rgba(255, 255, 255, 0.74);
-      border: 1px solid rgba(255, 255, 255, 0.72);
-      box-shadow: var(--shadow);
-      min-height: 230px;
-      aspect-ratio: 0.76;
-      isolation: isolate;
+      border-radius: 22px;
+      background: var(--bg-soft);
+      min-height: 320px;
+      position: relative;
     }
 
-    .photo-card.wide {
-      aspect-ratio: 1.4;
-      min-height: 200px;
-      grid-column: span 2;
+    .portfolio-item.large {
+      grid-column: span 7;
+      grid-row: span 2;
+      min-height: 680px;
     }
 
-    .photo-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(17, 17, 17, 0.12));
-      pointer-events: none;
+    .portfolio-item.medium {
+      grid-column: span 5;
+      min-height: 330px;
     }
 
-    .photo-card img {
-      width: 100%;
+    .portfolio-item.tall {
+      grid-column: span 4;
+      grid-row: span 2;
+      min-height: 680px;
+    }
+
+    .portfolio-item.wide {
+      grid-column: span 8;
+      min-height: 380px;
+    }
+
+    .portfolio-item.small {
+      grid-column: span 4;
+      min-height: 300px;
+    }
+
+    .portfolio-item img {
       height: 100%;
       object-fit: cover;
-      transition: transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+      transition: transform 0.6s ease;
     }
 
-    .photo-card:hover img {
-      transform: scale(1.04);
+    .portfolio-item:hover img {
+      transform: scale(1.06);
     }
 
-    .editorial-grid {
+    .services-list {
+      border-top: 1px solid var(--line);
+    }
+
+    .service-row {
       display: grid;
-      gap: 1rem;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 2rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--line);
       align-items: center;
     }
 
-    .editorial-copy {
-      padding: 0.5rem 0.25rem;
-    }
-
-    .editorial-copy h3 {
-      margin: 0 0 0.9rem;
-      font-size: clamp(2rem, 4.2vw, 3.6rem);
-      line-height: 1.02;
-      letter-spacing: -0.07em;
-      font-weight: 800;
-    }
-
-    .editorial-copy p {
-      margin: 0 0 1rem;
-      color: var(--muted);
-      line-height: 1.75;
-      font-size: 1.02rem;
-    }
-
-    .editorial-mosaic {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.85rem;
-    }
-
-    .mosaic-card {
-      overflow: hidden;
-      border-radius: 28px;
-      min-height: 220px;
-      background: rgba(255, 255, 255, 0.74);
-      border: 1px solid rgba(255, 255, 255, 0.72);
-      box-shadow: var(--shadow);
-    }
-
-    .mosaic-card.tall {
-      grid-row: span 2;
-      min-height: 460px;
-    }
-
-    .mosaic-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .mosaic-card:hover img {
-      transform: scale(1.03);
-    }
-
-    .showcase-panel {
-      min-height: 78vh;
-      padding: clamp(1.6rem, 3vw, 2.4rem);
-      display: flex;
-      align-items: flex-end;
-      position: relative;
-      overflow: hidden;
-      color: #fff;
-      background-color: #111;
-    }
-
-    .showcase-panel::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(180deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.56)),
-        var(--bg-image) center/cover;
-      transform: scale(1.02);
-      transition: transform 900ms ease;
-    }
-
-    .showcase-panel:hover::before {
-      transform: scale(1.05);
-    }
-
-    .showcase-content {
-      position: relative;
-      z-index: 1;
-      max-width: 36rem;
-      width: 100%;
-    }
-
-    .showcase-content span {
-      display: inline-block;
-      margin-bottom: 0.7rem;
-      font-size: 0.84rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.8);
-    }
-
-    .showcase-content h3 {
-      margin: 0 0 0.8rem;
-      font-size: clamp(2.3rem, 5vw, 4.6rem);
-      line-height: 0.98;
-      letter-spacing: -0.075em;
-      font-weight: 800;
-    }
-
-    .showcase-content p {
+    .service-title {
       margin: 0;
-      font-size: 1.05rem;
-      line-height: 1.72;
-      color: rgba(255, 255, 255, 0.86);
+      font-size: clamp(1.75rem, 4vw, 2.6rem);
     }
 
-    .about-grid,
+    .service-copy {
+      color: var(--muted);
+    }
+
     .contact-grid {
       display: grid;
-      gap: 1rem;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 2rem;
+      align-items: start;
     }
 
-    .about-card,
-    .contact-panel {
-      padding: clamp(1.5rem, 3vw, 2.2rem);
-    }
-
-    .about-card.large {
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.68)),
-        radial-gradient(circle at top right, rgba(95, 157, 255, 0.12), transparent 26%);
-    }
-
-    .about-quote {
-      margin-top: 1.6rem;
-      padding-top: 1.35rem;
-      border-top: 1px solid var(--line);
-      font-size: clamp(1.2rem, 2.2vw, 1.65rem);
-      line-height: 1.5;
-      letter-spacing: -0.03em;
-    }
-
-    .mini-list {
-      display: grid;
-      gap: 0.8rem;
-      margin-top: 1rem;
-    }
-
-    .mini-list div {
-      padding: 0.95rem 0;
-      border-bottom: 1px solid var(--line);
-      font-size: 0.98rem;
+    .contact-copy p {
+      max-width: 28rem;
       color: var(--muted);
     }
 
-    .mini-list div:last-child {
-      border-bottom: 0;
-      padding-bottom: 0;
-    }
-
-    .contact-panel form {
+    .contact-form {
       display: grid;
-      gap: 0.9rem;
-      margin-top: 1.4rem;
+      gap: 1rem;
     }
 
     .field {
@@ -722,113 +338,97 @@
     }
 
     .field label {
-      font-size: 0.88rem;
-      color: #4f5665;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.75rem;
     }
 
     .field input,
     .field textarea {
       width: 100%;
-      border: 1px solid rgba(17, 17, 17, 0.08);
-      background: rgba(255, 255, 255, 0.82);
-      border-radius: 18px;
-      padding: 0.98rem 1rem;
+      background: transparent;
+      border: 1px solid rgba(245, 240, 232, 0.14);
       color: var(--text);
+      padding: 1rem 0;
+      border-width: 0 0 1px;
       outline: none;
-      transition: border-color 220ms ease, box-shadow 220ms ease, background 220ms ease;
-    }
-
-    .field textarea {
-      min-height: 144px;
-      resize: vertical;
+      transition: border-color 220ms ease;
     }
 
     .field input:focus,
     .field textarea:focus {
-      border-color: rgba(13, 99, 236, 0.35);
-      box-shadow: 0 0 0 5px rgba(13, 99, 236, 0.08);
-      background: rgba(255, 255, 255, 0.96);
+      border-color: var(--gold);
     }
 
-    .contact-note {
+    .field textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .submit-button {
+      width: fit-content;
+      margin-top: 0.75rem;
+      padding: 0.95rem 1.65rem;
+      border: 1px solid var(--gold);
+      background: transparent;
+      color: var(--text);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 0.74rem;
+      transition: background 220ms ease, color 220ms ease, transform 220ms ease;
+    }
+
+    .submit-button:hover {
+      background: var(--gold);
+      color: var(--bg);
+      transform: translateY(-1px);
+    }
+
+    .footer {
+      padding: 3rem 1.25rem 4rem;
+      text-align: center;
+      border-top: 1px solid rgba(245, 240, 232, 0.08);
+    }
+
+    .footer-mark {
+      font-size: 2rem;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-copy {
       color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.65;
+      font-size: 0.94rem;
     }
 
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      z-index: 120;
+    .footer-socials {
+      margin-top: 1.2rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .social-link {
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      border: 1px solid rgba(201, 169, 110, 0.4);
       display: grid;
       place-items: center;
-      padding: 1.5rem;
-      background: rgba(10, 10, 14, 0.82);
-      backdrop-filter: blur(18px);
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      transition: opacity 220ms ease, visibility 220ms ease;
+      color: var(--gold);
+      transition: background 220ms ease, transform 220ms ease;
     }
 
-    .lightbox.open {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-    }
-
-    .lightbox-image {
-      max-width: min(92vw, 1400px);
-      max-height: 86vh;
-      width: auto;
-      border-radius: 24px;
-      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.35);
-      object-fit: contain;
-      transform: scale(0.96);
-      transition: transform 220ms ease;
-    }
-
-    .lightbox.open .lightbox-image {
-      transform: scale(1);
-    }
-
-    .lightbox-close {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      width: 46px;
-      height: 46px;
-      border: 0;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.14);
-      color: #fff;
-      font-size: 1.6rem;
-      line-height: 1;
-      cursor: pointer;
-      backdrop-filter: blur(14px);
-    }
-
-    footer {
-      padding: 2rem 1.25rem 3rem;
-      color: var(--muted);
-    }
-
-    .footer-inner {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding-top: 1.2rem;
-      border-top: 1px solid rgba(17, 17, 17, 0.08);
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 0.8rem;
-      font-size: 0.92rem;
+    .social-link:hover {
+      background: var(--gold-soft);
+      transform: translateY(-1px);
     }
 
     .reveal {
       opacity: 0;
-      transform: translateY(26px);
-      transition: opacity 800ms cubic-bezier(0.22, 1, 0.36, 1), transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+      transform: translateY(38px);
+      transition: opacity 900ms ease, transform 900ms ease;
     }
 
     .reveal.visible {
@@ -836,531 +436,198 @@
       transform: translateY(0);
     }
 
-    @media (min-width: 768px) {
-      section {
-        padding: 6rem 1.75rem;
-      }
-
-      .feature-row {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 2.6rem;
-        padding: 1.2rem;
-      }
-
-      .feature-row.reverse .feature-copy {
-        order: -1;
-      }
-
-      .about-grid {
-        grid-template-columns: 1.2fr 0.8fr;
-      }
-
-      .contact-grid {
-        grid-template-columns: 0.92fr 1.08fr;
-      }
-
-      .photo-grid {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-      }
-
-      .photo-card.wide {
-        grid-column: span 2;
-      }
-
-      .editorial-grid {
-        grid-template-columns: 0.9fr 1.1fr;
-      }
-    }
-
-    @media (min-width: 768px) and (max-width: 1080px) {
-      .nav {
-        padding: 0 1.4rem;
-      }
-
-      .hero-panel {
-        padding: 2.25rem;
-        min-height: auto;
-      }
-
-      .hero h1 {
-        font-size: clamp(3.2rem, 9vw, 5.6rem);
-      }
-
-      .hero-visual {
+    @media (max-width: 960px) {
+      .about-grid,
+      .contact-grid,
+      .service-row {
         grid-template-columns: 1fr;
       }
 
-      .media-card {
-        min-height: 420px;
+      .about-photo {
+        min-height: 440px;
       }
 
-      .photo-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .photo-card.wide {
-        grid-column: span 3;
+      .portfolio-item.large,
+      .portfolio-item.medium,
+      .portfolio-item.tall,
+      .portfolio-item.wide,
+      .portfolio-item.small {
+        grid-column: span 6;
+        grid-row: span 1;
+        min-height: 340px;
       }
     }
 
-    @media (max-width: 767px) {
-      :root {
-        --radius-xl: 24px;
+    @media (max-width: 640px) {
+      * {
+        cursor: auto;
       }
 
-      section {
-        padding: 3.5rem 1rem;
+      body {
+        cursor: auto;
       }
 
-      .nav {
-        min-height: 64px;
-        padding: 0 1rem;
-      }
-
-      .nav-links {
+      .cursor-dot {
         display: none;
       }
 
-      .brand {
-        font-size: 1.02rem;
+      .section {
+        padding: 4.25rem 1rem;
       }
 
       .hero {
-        padding-top: 2.25rem;
-        padding-bottom: 2.5rem;
+        min-height: 92vh;
       }
 
-      .hero-panel {
-        border-radius: 28px;
-        min-height: auto;
-        padding: 1.4rem;
-      }
-
-      .hero-panel::before {
-        width: 20rem;
-        height: 20rem;
-        right: -5rem;
-        bottom: -6rem;
-      }
-
-      .hero-copy {
-        max-width: 100%;
-      }
-
-      .hero h1 {
-        margin-top: 0.9rem;
-        font-size: clamp(2.7rem, 14vw, 4.6rem);
-        line-height: 1.06;
-        letter-spacing: -0.04em;
-      }
-
-      .hero h1 .accent {
-        margin-top: 0.16em;
-      }
-
-      .hero p {
-        max-width: 100%;
-        font-size: 1rem;
-        line-height: 1.65;
-      }
-
-      .hero-actions {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.75rem;
-      }
-
-      .button {
-        width: 100%;
-        min-width: 0;
-      }
-
-      .hero-visual {
-        grid-template-columns: 1fr;
-      }
-
-      .media-card {
-        min-height: 280px;
-      }
-
-      .media-card::after,
-      .feature-visual::after {
-        left: 1rem;
-        bottom: 1rem;
-      }
-
-      .showcase-panel {
-        min-height: 58vh;
-        padding: 1.25rem;
-      }
-
-      .showcase-content h3 {
-        font-size: clamp(2rem, 10vw, 3rem);
-        line-height: 1.02;
-      }
-
-      .showcase-content p {
-        font-size: 0.98rem;
-        line-height: 1.6;
-      }
-
-      .section-heading {
-        margin-bottom: 1.8rem;
-      }
-
-      .section-heading h2 {
-        font-size: clamp(2rem, 11vw, 3rem);
-      }
-
-      .feature-row {
-        gap: 1rem;
-        padding: 0;
-      }
-
-      .feature-visual {
-        min-height: 300px;
-      }
-
-      .feature-copy h3,
-      .editorial-copy h3 {
-        font-size: clamp(1.8rem, 9vw, 2.6rem);
-        line-height: 1.08;
-      }
-
-      .photo-card,
-      .photo-card.wide {
-        grid-column: auto;
-        aspect-ratio: 0.78;
-      }
-
-      .photo-grid,
-      .editorial-mosaic {
-        grid-template-columns: 1fr;
-      }
-
-      .photo-card.wide {
-        aspect-ratio: 0.95;
-      }
-
-      .mosaic-card.tall {
-        grid-row: auto;
-        min-height: 220px;
-      }
-
-      .about-card,
-      .contact-panel,
-      .glass-card {
-        padding: 1.2rem;
-      }
-
-      .lightbox {
-        padding: 1rem;
-      }
-
-      .lightbox-image {
-        max-width: 100%;
-        max-height: 78vh;
-        border-radius: 18px;
-      }
-
-      .lightbox-close {
-        top: 0.75rem;
-        right: 0.75rem;
-      }
-    }
-
-    @media (max-width: 420px) {
-      .eyebrow {
-        font-size: 0.7rem;
+      .hero-name {
+        font-size: clamp(2.6rem, 14vw, 4.8rem);
         letter-spacing: 0.12em;
       }
 
-      .hero-panel {
-        padding: 1.1rem;
+      .hero-subtitle {
+        font-size: 0.98rem;
       }
 
-      .hero h1 {
-        font-size: clamp(2.35rem, 13vw, 3.4rem);
+      .portfolio-grid {
+        grid-template-columns: 1fr;
       }
 
-      .media-card,
-      .feature-visual,
-      .mosaic-card,
-      .photo-card {
-        border-radius: 22px;
+      .portfolio-item.large,
+      .portfolio-item.medium,
+      .portfolio-item.tall,
+      .portfolio-item.wide,
+      .portfolio-item.small {
+        grid-column: auto;
+        min-height: 300px;
       }
 
-      .showcase-panel {
-        min-height: 50vh;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *,
-      *::before,
-      *::after {
-        animation: none !important;
-        transition: none !important;
-      }
-
-      .reveal {
-        opacity: 1;
-        transform: none;
+      .submit-button {
+        width: 100%;
       }
     }
   </style>
 </head>
 <body>
+  <div class="cursor-dot" id="cursor-dot"></div>
+
   <div class="page-shell">
-    <header class="site-header">
-      <nav class="nav">
-        <a class="brand" href="#top">C_Studio03</a>
-        <div class="nav-links">
-          <a href="#features">Work</a>
-          <a href="#showcase">Stories</a>
-          <a href="#portfolio">Portfolio</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
+    <section class="hero">
+      <div class="hero-media" id="hero-media"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content reveal">
+        <div class="hero-kicker">Luxury Photography Portfolio</div>
+        <h1 class="hero-name">C_Studio03</h1>
+        <p class="hero-subtitle">Quietly cinematic imagery with an editorial eye, designed to feel intimate, timeless, and deeply refined.</p>
+      </div>
+      <div class="scroll-indicator" aria-hidden="true"></div>
+    </section>
+
+    <section class="section reveal">
+      <div class="container about-grid">
+        <div class="about-photo">
+          <img src="https://picsum.photos/seed/about-portrait/900/1200" alt="Portrait of the photographer">
         </div>
-      </nav>
-    </header>
-
-    <main id="top">
-      <section class="hero">
-        <div class="container">
-          <div class="hero-panel reveal">
-            <div class="hero-grid">
-              <div class="hero-copy">
-                <div class="eyebrow">Premium Photographic Portfolio</div>
-                <h1>Experience the <span class="accent">extraordinary.</span></h1>
-                <p>C_Studio03 presents modern photography with a quiet sense of luxury. Clean composition, elegant motion, and a visual rhythm designed to let your work breathe.</p>
-                <div class="hero-actions">
-                  <a class="button button-primary" href="#contact">Start a Project</a>
-                  <a class="button button-secondary" href="#showcase">View Showcase</a>
-                </div>
-              </div>
-
-              <div class="hero-visual">
-                <div class="media-card" data-lightbox-src="Images/8DF74177-8772-4CCB-B15B-FFC5255C7EA0_1_102_o.jpeg" data-lightbox-alt="C_Studio03 hero image" tabindex="0" role="button" aria-label="Open hero image"></div>
-                <div class="glass-stack">
-                  <div class="glass-card reveal">
-                    <h3>Built for photography</h3>
-                    <p>Large image moments, measured spacing, and gallery-ready presentation with room for your own uploads and future collections.</p>
-                  </div>
-                  <div class="glass-card reveal">
-                    <h3>Quietly cinematic</h3>
-                    <p>Subtle scroll reveals, restrained gradients, and soft glass surfaces create a premium feel without distracting from the work.</p>
-                    <div class="stats">
-                      <div class="stat">
-                        <strong>11</strong>
-                        <span>uploaded images used</span>
-                      </div>
-                      <div class="stat">
-                        <strong>100%</strong>
-                        <span>portfolio-first polish</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="about-copy">
+          <h2 class="section-title">About</h2>
+          <p>C_Studio03 is a visual practice rooted in elegance, emotion, and restraint. Every frame is shaped with a gallery mindset, where light, texture, and silence are treated as part of the composition.</p>
+          <p>From portraiture to wedding narratives and editorial stories, the work is guided by a refined minimalism that allows people, atmosphere, and memory to take center stage.</p>
+          <div class="about-signature">Artfully composed. Intentionally timeless.</div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="features">
-        <div class="container">
-          <div class="section-heading reveal">
-            <h2>Crafted to elevate every frame.</h2>
-            <p>A premium editorial structure designed for portraiture, fashion, travel, and visual storytelling. Replace the imagery with your own photography and the experience still holds its shape beautifully.</p>
+    <section class="section reveal">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Portfolio</h2>
+          <div class="section-copy">A curated selection arranged with an editorial rhythm, balancing scale, intimacy, and negative space.</div>
+        </div>
+
+        <div class="portfolio-grid">
+          <article class="portfolio-item large"><img src="https://picsum.photos/seed/portfolio-01/1200/1600" alt="Portfolio image one"></article>
+          <article class="portfolio-item medium"><img src="https://picsum.photos/seed/portfolio-02/900/1200" alt="Portfolio image two"></article>
+          <article class="portfolio-item small"><img src="https://picsum.photos/seed/portfolio-03/900/1200" alt="Portfolio image three"></article>
+          <article class="portfolio-item tall"><img src="https://picsum.photos/seed/portfolio-04/900/1400" alt="Portfolio image four"></article>
+          <article class="portfolio-item wide"><img src="https://picsum.photos/seed/portfolio-05/1400/900" alt="Portfolio image five"></article>
+          <article class="portfolio-item small"><img src="https://picsum.photos/seed/portfolio-06/900/1200" alt="Portfolio image six"></article>
+          <article class="portfolio-item medium"><img src="https://picsum.photos/seed/portfolio-07/1000/1200" alt="Portfolio image seven"></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Services</h2>
+          <div class="section-copy">Select offerings crafted for clients who value refinement, atmosphere, and intentional storytelling.</div>
+        </div>
+
+        <div class="services-list">
+          <div class="service-row">
+            <h3 class="service-title">Portraits</h3>
+            <div class="service-copy">Elegant portrait sessions with a calm editorial tone, balancing intimacy with sculptural light and understated direction.</div>
           </div>
-
-          <div class="feature-list">
-            <article class="feature-row reveal">
-              <div class="feature-visual one" data-label="Portrait Direction" data-lightbox-src="Images/14B84896-5A43-4A9B-A713-DDCE0307CF3A_1_105_c.jpeg" data-lightbox-alt="C_Studio03 feature image 1" tabindex="0" role="button" aria-label="Open feature image 1"></div>
-              <div class="feature-copy">
-                <span>01 / Precision</span>
-                <h3>Minimal layouts that let the image lead.</h3>
-                <p>Typography stays confident and quiet. Content is reduced to what matters. The result feels premium, composed, and closer to a luxury campaign than a standard portfolio grid.</p>
-              </div>
-            </article>
-
-            <article class="feature-row reverse reveal">
-              <div class="feature-visual two" data-label="Editorial Motion" data-lightbox-src="Images/5344E226-57CB-4069-A244-2A2ED79EA12F_1_105_c.jpeg" data-lightbox-alt="C_Studio03 feature image 2" tabindex="0" role="button" aria-label="Open feature image 2"></div>
-              <div class="feature-copy">
-                <span>02 / Rhythm</span>
-                <h3>Alternating sections with a calm, cinematic flow.</h3>
-                <p>Each section changes pace just enough to keep the journey engaging. Large imagery, soft transitions, and intentional white space create a sense of movement without noise.</p>
-              </div>
-            </article>
-
-            <article class="feature-row reveal">
-              <div class="feature-visual three" data-label="Future Ready" data-lightbox-src="Images/606F208C-B2A5-4BF8-BA4E-EB7F048624BB_1_105_c.jpeg" data-lightbox-alt="C_Studio03 feature image 3" tabindex="0" role="button" aria-label="Open feature image 3"></div>
-              <div class="feature-copy">
-                <span>03 / Flexibility</span>
-                <h3>Ready for your photography, not locked to placeholders.</h3>
-                <p>The composition is built to scale gracefully as you add your own work, featured stories, campaign imagery, behind-the-scenes notes, or a curated client-facing experience.</p>
-              </div>
-            </article>
+          <div class="service-row">
+            <h3 class="service-title">Weddings</h3>
+            <div class="service-copy">A luxurious visual narrative for modern celebrations, capturing quiet emotion, detail, and atmosphere with a documentary sensibility.</div>
+          </div>
+          <div class="service-row">
+            <h3 class="service-title">Editorial</h3>
+            <div class="service-copy">High-end imagery for campaigns, fashion stories, and creative collaborations, shaped with polished composition and art-gallery restraint.</div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="showcase" id="showcase">
-        <div class="container">
-          <div class="section-heading reveal">
-            <h2>Full-width storytelling, designed to feel immersive.</h2>
-            <p>Structured like a premium product page, these panels create a narrative cadence that works beautifully for photography launches, signature projects, or curated collections.</p>
-          </div>
-
-          <div class="showcase-flow">
-            <article class="showcase-panel reveal" style="--bg-image: url('Images/6490D396-04E7-451C-B075-C563E0D20928_1_105_c.jpeg');" data-lightbox-src="Images/6490D396-04E7-451C-B075-C563E0D20928_1_105_c.jpeg" data-lightbox-alt="C_Studio03 showcase image 1" tabindex="0" role="button" aria-label="Open showcase image 1">
-              <div class="showcase-content">
-                <span>Collection One</span>
-                <h3>Light, softened.</h3>
-                <p>Use this section for a hero campaign or signature body of work. The pacing feels expansive, luxurious, and intentionally uncluttered.</p>
-              </div>
-            </article>
-
-            <article class="showcase-panel reveal" style="--bg-image: url('Images/7D4DD3E6-7F04-4257-92B0-E0DCD3A5620B_1_105_c.jpeg');" data-lightbox-src="Images/7D4DD3E6-7F04-4257-92B0-E0DCD3A5620B_1_105_c.jpeg" data-lightbox-alt="C_Studio03 showcase image 2" tabindex="0" role="button" aria-label="Open showcase image 2">
-              <div class="showcase-content">
-                <span>Collection Two</span>
-                <h3>Form, framed with restraint.</h3>
-                <p>Perfect for fashion stories, portrait series, or a refined visual essay where every image deserves generous space and subtle motion.</p>
-              </div>
-            </article>
-
-            <article class="showcase-panel reveal" style="--bg-image: url('Images/904692C5-3D53-4F79-81B0-4BAF6D18D216_1_105_c.jpeg');" data-lightbox-src="Images/904692C5-3D53-4F79-81B0-4BAF6D18D216_1_105_c.jpeg" data-lightbox-alt="C_Studio03 showcase image 3" tabindex="0" role="button" aria-label="Open showcase image 3">
-              <div class="showcase-content">
-                <span>Collection Three</span>
-                <h3>Premium by design.</h3>
-                <p>Every panel is oversized, tactile, and polished so the site feels closer to a luxury brand launch than a typical personal portfolio.</p>
-              </div>
-            </article>
-          </div>
+    <section class="section reveal">
+      <div class="container contact-grid">
+        <div class="contact-copy">
+          <h2 class="section-title">Contact</h2>
+          <p>For commissions, collaborations, and private bookings, share a few details about your vision and timeline.</p>
         </div>
-      </section>
 
-      <section class="gallery" id="portfolio">
-        <div class="container">
-          <div class="section-heading reveal">
-            <h2>A wider portfolio, arranged with more presence.</h2>
-            <p>A denser image section gives your visitors more work to explore immediately while preserving the quiet, premium rhythm of the site.</p>
+        <form class="contact-form">
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your name">
           </div>
-
-          <div class="photo-grid">
-            <figure class="photo-card wide reveal"><img src="Images/14B84896-5A43-4A9B-A713-DDCE0307CF3A_1_105_c.jpeg" alt="C_Studio03 portfolio image 1"></figure>
-            <figure class="photo-card reveal"><img src="Images/5344E226-57CB-4069-A244-2A2ED79EA12F_1_105_c.jpeg" alt="C_Studio03 portfolio image 2"></figure>
-            <figure class="photo-card reveal"><img src="Images/606F208C-B2A5-4BF8-BA4E-EB7F048624BB_1_105_c.jpeg" alt="C_Studio03 portfolio image 3"></figure>
-            <figure class="photo-card reveal"><img src="Images/6490D396-04E7-451C-B075-C563E0D20928_1_105_c.jpeg" alt="C_Studio03 portfolio image 4"></figure>
-            <figure class="photo-card reveal"><img src="Images/7D4DD3E6-7F04-4257-92B0-E0DCD3A5620B_1_105_c.jpeg" alt="C_Studio03 portfolio image 5"></figure>
-            <figure class="photo-card wide reveal"><img src="Images/8DF74177-8772-4CCB-B15B-FFC5255C7EA0_1_102_o.jpeg" alt="C_Studio03 portfolio image 6"></figure>
-            <figure class="photo-card reveal"><img src="Images/904692C5-3D53-4F79-81B0-4BAF6D18D216_1_105_c.jpeg" alt="C_Studio03 portfolio image 7"></figure>
-            <figure class="photo-card reveal"><img src="Images/98A2F6E2-D48B-4980-BFFA-1D8446B9A1EF_1_105_c.jpeg" alt="C_Studio03 portfolio image 8"></figure>
-            <figure class="photo-card reveal"><img src="Images/9EAEA4FF-160E-4568-B58D-9338DC25F9AC_1_105_c.jpeg" alt="C_Studio03 portfolio image 9"></figure>
-            <figure class="photo-card reveal"><img src="Images/CBE49DE8-4A4E-437C-BAD8-A7ADBBFDD235_1_105_c.jpeg" alt="C_Studio03 portfolio image 10"></figure>
-            <figure class="photo-card reveal"><img src="Images/D1E5ACDF-AABA-461F-8FA3-D3AFE102C105_1_105_c.jpeg" alt="C_Studio03 portfolio image 11"></figure>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com">
           </div>
-        </div>
-      </section>
-
-      <section id="moments">
-        <div class="container">
-          <div class="editorial-grid">
-            <div class="editorial-copy reveal">
-              <div class="eyebrow">Editorial Sequence</div>
-              <h3>More sections. More imagery. Still restrained.</h3>
-              <p>This additional chapter turns the site into a fuller visual experience. It feels closer to a premium campaign rollout, with multiple moments to pause, scan, and immerse in the work.</p>
-              <p>By using more of your photography across different compositions, the website feels custom, substantial, and unmistakably yours.</p>
-            </div>
-            <div class="editorial-mosaic">
-              <figure class="mosaic-card tall reveal"><img src="Images/98A2F6E2-D48B-4980-BFFA-1D8446B9A1EF_1_105_c.jpeg" alt="C_Studio03 editorial image 1"></figure>
-              <figure class="mosaic-card reveal"><img src="Images/9EAEA4FF-160E-4568-B58D-9338DC25F9AC_1_105_c.jpeg" alt="C_Studio03 editorial image 2"></figure>
-              <figure class="mosaic-card reveal"><img src="Images/CBE49DE8-4A4E-437C-BAD8-A7ADBBFDD235_1_105_c.jpeg" alt="C_Studio03 editorial image 3"></figure>
-              <figure class="mosaic-card reveal"><img src="Images/D1E5ACDF-AABA-461F-8FA3-D3AFE102C105_1_105_c.jpeg" alt="C_Studio03 editorial image 4"></figure>
-              <figure class="mosaic-card tall reveal"><img src="Images/6490D396-04E7-451C-B075-C563E0D20928_1_105_c.jpeg" alt="C_Studio03 editorial image 5"></figure>
-              <figure class="mosaic-card reveal"><img src="Images/7D4DD3E6-7F04-4257-92B0-E0DCD3A5620B_1_105_c.jpeg" alt="C_Studio03 editorial image 6"></figure>
-            </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell me about your project."></textarea>
           </div>
-        </div>
-      </section>
+          <button class="submit-button" type="submit">Send Inquiry</button>
+        </form>
+      </div>
+    </section>
 
-      <section id="about">
-        <div class="container">
-          <div class="section-heading reveal">
-            <h2>A quieter kind of luxury.</h2>
-            <p>C_Studio03 is built around restraint, composition, and atmosphere. The experience is intentionally minimal so the photography feels elevated, confident, and memorable.</p>
-          </div>
-
-          <div class="about-grid">
-            <div class="about-card large reveal">
-              <h3>About the studio</h3>
-              <p>This concept blends premium editorial design with product-page discipline. Every edge, spacing unit, and motion cue is tuned to feel calm, modern, and high-end.</p>
-              <div class="about-quote">“A portfolio should never compete with the image. It should frame it with confidence.”</div>
-            </div>
-            <div class="about-card reveal">
-              <h3>Studio notes</h3>
-              <div class="mini-list">
-                <div>Designed for elegant photo replacement and future gallery growth.</div>
-                <div>Responsive from mobile to ultra-wide screens with balanced spacing.</div>
-                <div>Soft blue accents used sparingly to preserve a premium monochrome palette.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact">
-        <div class="container">
-          <div class="contact-grid">
-            <div class="contact-panel reveal">
-              <h3>Let’s create something timeless.</h3>
-              <p>For portrait commissions, editorial collaborations, campaigns, or private bookings, the conversation starts here.</p>
-              <p class="contact-note">This inquiry form opens a prepared email draft addressed to itcsia05@gmail.com.</p>
-            </div>
-
-            <div class="contact-panel reveal">
-              <h3>Contact</h3>
-              <form action="mailto:itcsia05@gmail.com" method="post" enctype="text/plain">
-                <div class="field">
-                  <label for="name">Name</label>
-                  <input id="name" name="name" type="text" placeholder="Your name">
-                </div>
-                <div class="field">
-                  <label for="email">Email</label>
-                  <input id="email" name="email" type="email" placeholder="you@example.com">
-                </div>
-                <div class="field">
-                  <label for="message">Project details</label>
-                  <textarea id="message" name="message" placeholder="Tell me about your project, timing, and creative direction."></textarea>
-                </div>
-                <button class="button button-primary" type="submit">Send Inquiry</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <div class="footer-inner">
-        <div>C_Studio03</div>
-        <div>Premium photographic storytelling</div>
-        <div>© 2026 All rights reserved</div>
+    <footer class="footer reveal">
+      <div class="footer-mark">CS</div>
+      <div class="footer-copy">© 2026 C_Studio03. All rights reserved.</div>
+      <div class="footer-socials" aria-label="Social links">
+        <a class="social-link" href="#" aria-label="Instagram">
+          <span>IG</span>
+        </a>
+        <a class="social-link" href="#" aria-label="Behance">
+          <span>Be</span>
+        </a>
+        <a class="social-link" href="#" aria-label="Pinterest">
+          <span>Pi</span>
+        </a>
       </div>
     </footer>
   </div>
 
-  <div class="lightbox" id="lightbox" aria-hidden="true">
-    <button class="lightbox-close" type="button" aria-label="Close image popup">&times;</button>
-    <img class="lightbox-image" id="lightbox-image" src="" alt="">
-  </div>
-
   <script>
+    // Fade in the full page after load.
+    window.addEventListener("load", () => {
+      document.body.classList.add("is-loaded");
+    });
+
+    // Reveal sections as they enter the viewport.
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -1369,7 +636,7 @@
         }
       });
     }, {
-      threshold: 0.16,
+      threshold: 0.14,
       rootMargin: "0px 0px -8% 0px"
     });
 
@@ -1377,51 +644,27 @@
       observer.observe(element);
     });
 
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImage = document.getElementById("lightbox-image");
-    const lightboxClose = document.querySelector(".lightbox-close");
-    const clickableVisuals = document.querySelectorAll("[data-lightbox-src], .photo-card img, .mosaic-card img");
+    // Minimal custom gold cursor for desktop.
+    const cursor = document.getElementById("cursor-dot");
+    const canUseCustomCursor = window.matchMedia("(min-width: 641px)").matches;
 
-    const openLightbox = (src, alt = "") => {
-      lightboxImage.src = src;
-      lightboxImage.alt = alt;
-      lightbox.classList.add("open");
-      lightbox.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden";
-    };
-
-    const closeLightbox = () => {
-      lightbox.classList.remove("open");
-      lightbox.setAttribute("aria-hidden", "true");
-      document.body.style.overflow = "";
-      lightboxImage.src = "";
-      lightboxImage.alt = "";
-    };
-
-    clickableVisuals.forEach((element) => {
-      const src = element.dataset.lightboxSrc || element.getAttribute("src");
-      const alt = element.dataset.lightboxAlt || element.getAttribute("alt") || "";
-
-      element.addEventListener("click", () => openLightbox(src, alt));
-      element.addEventListener("keydown", (event) => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          openLightbox(src, alt);
-        }
+    if (canUseCustomCursor) {
+      window.addEventListener("mousemove", (event) => {
+        cursor.style.transform = `translate(${event.clientX}px, ${event.clientY}px)`;
       });
-    });
+    }
 
-    lightboxClose.addEventListener("click", closeLightbox);
-    lightbox.addEventListener("click", (event) => {
-      if (event.target === lightbox) {
-        closeLightbox();
-      }
-    });
+    // Slow parallax motion on the hero image.
+    const heroMedia = document.getElementById("hero-media");
 
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && lightbox.classList.contains("open")) {
-        closeLightbox();
-      }
+    window.addEventListener("scroll", () => {
+      const offset = window.scrollY * 0.18;
+      heroMedia.style.transform = `scale(1.08) translateY(${offset}px)`;
+    }, { passive: true });
+
+    // Prevent demo form submission.
+    document.querySelector(".contact-form").addEventListener("submit", (event) => {
+      event.preventDefault();
     });
   </script>
 </body>
