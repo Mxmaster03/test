@@ -6,6 +6,8 @@
   <title>C_Studio03</title>
   <meta name="description" content="C_Studio03 is a premium photographic studio portfolio with refined storytelling, elegant motion, and Apple-inspired minimalism.">
   <style>
+    @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap");
+
     :root {
       --bg: #f5f5f7;
       --surface: rgba(255, 255, 255, 0.72);
@@ -33,7 +35,7 @@
 
     body {
       margin: 0;
-      font-family: "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-family: "Outfit", "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
       color: var(--text);
       background:
         radial-gradient(circle at top left, rgba(95, 157, 255, 0.12), transparent 30%),
@@ -106,9 +108,9 @@
 
     .brand {
       font-size: 1rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      font-weight: 600;
+      letter-spacing: -0.05em;
+      text-transform: none;
+      font-weight: 800;
     }
 
     .nav-links {
@@ -116,7 +118,8 @@
       align-items: center;
       gap: 1rem;
       color: var(--muted);
-      font-size: 0.94rem;
+      font-size: 1rem;
+      font-weight: 500;
     }
 
     .nav-links a {
@@ -209,18 +212,28 @@
 
     .hero h1 {
       margin: 1.25rem 0 1rem;
-      font-size: clamp(3rem, 8vw, 7.2rem);
-      line-height: 0.95;
-      letter-spacing: -0.055em;
-      font-weight: 700;
+      font-size: clamp(3.4rem, 8.8vw, 8.25rem);
+      line-height: 1.08;
+      letter-spacing: -0.045em;
+      font-weight: 800;
+    }
+
+    .hero h1 .accent {
+      display: block;
+      margin-top: 0.24em;
+      background: linear-gradient(90deg, #1776ff 0%, #5560ff 45%, #a04cff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
     .hero p {
       margin: 0 auto;
-      max-width: 46rem;
-      font-size: clamp(1.08rem, 2vw, 1.45rem);
-      line-height: 1.55;
+      max-width: 42rem;
+      font-size: clamp(1.08rem, 2vw, 1.55rem);
+      line-height: 1.48;
       color: var(--muted);
+      font-weight: 400;
     }
 
     .hero-actions {
@@ -297,6 +310,14 @@
         url("Images/8DF74177-8772-4CCB-B15B-FFC5255C7EA0_1_102_o.jpeg") center 34%/cover;
     }
 
+    .media-card,
+    .feature-visual,
+    .showcase-panel,
+    .photo-card img,
+    .mosaic-card img {
+      cursor: zoom-in;
+    }
+
     .media-card::after {
       content: "Signature Frame";
       position: absolute;
@@ -371,7 +392,8 @@
       margin: 0 0 0.9rem;
       font-size: clamp(2.2rem, 5vw, 4.4rem);
       line-height: 1.02;
-      letter-spacing: -0.05em;
+      letter-spacing: -0.065em;
+      font-weight: 800;
     }
 
     .section-heading p {
@@ -461,7 +483,8 @@
       margin: 0 0 0.8rem;
       font-size: clamp(1.9rem, 4vw, 3.25rem);
       line-height: 1.05;
-      letter-spacing: -0.05em;
+      letter-spacing: -0.065em;
+      font-weight: 800;
     }
 
     .feature-copy p {
@@ -542,7 +565,8 @@
       margin: 0 0 0.9rem;
       font-size: clamp(2rem, 4.2vw, 3.6rem);
       line-height: 1.02;
-      letter-spacing: -0.05em;
+      letter-spacing: -0.07em;
+      font-weight: 800;
     }
 
     .editorial-copy p {
@@ -628,7 +652,8 @@
       margin: 0 0 0.8rem;
       font-size: clamp(2.3rem, 5vw, 4.6rem);
       line-height: 0.98;
-      letter-spacing: -0.06em;
+      letter-spacing: -0.075em;
+      font-weight: 800;
     }
 
     .showcase-content p {
@@ -726,6 +751,57 @@
       color: var(--muted);
       font-size: 0.92rem;
       line-height: 1.65;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 120;
+      display: grid;
+      place-items: center;
+      padding: 1.5rem;
+      background: rgba(10, 10, 14, 0.82);
+      backdrop-filter: blur(18px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 220ms ease, visibility 220ms ease;
+    }
+
+    .lightbox.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .lightbox-image {
+      max-width: min(92vw, 1400px);
+      max-height: 86vh;
+      border-radius: 24px;
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.35);
+      object-fit: contain;
+      transform: scale(0.96);
+      transition: transform 220ms ease;
+    }
+
+    .lightbox.open .lightbox-image {
+      transform: scale(1);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 46px;
+      height: 46px;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.14);
+      color: #fff;
+      font-size: 1.6rem;
+      line-height: 1;
+      cursor: pointer;
+      backdrop-filter: blur(14px);
     }
 
     footer {
@@ -867,7 +943,7 @@
             <div class="hero-grid">
               <div class="hero-copy">
                 <div class="eyebrow">Premium Photographic Portfolio</div>
-                <h1>Images, refined to feel unforgettable.</h1>
+                <h1>Experience the <span class="accent">extraordinary.</span></h1>
                 <p>C_Studio03 presents modern photography with a quiet sense of luxury. Clean composition, elegant motion, and a visual rhythm designed to let your work breathe.</p>
                 <div class="hero-actions">
                   <a class="button button-primary" href="#contact">Start a Project</a>
@@ -876,7 +952,7 @@
               </div>
 
               <div class="hero-visual">
-                <div class="media-card"></div>
+                <div class="media-card" data-lightbox-src="Images/8DF74177-8772-4CCB-B15B-FFC5255C7EA0_1_102_o.jpeg" data-lightbox-alt="C_Studio03 hero image" tabindex="0" role="button" aria-label="Open hero image"></div>
                 <div class="glass-stack">
                   <div class="glass-card reveal">
                     <h3>Built for photography</h3>
@@ -912,7 +988,7 @@
 
           <div class="feature-list">
             <article class="feature-row reveal">
-              <div class="feature-visual one" data-label="Portrait Direction"></div>
+              <div class="feature-visual one" data-label="Portrait Direction" data-lightbox-src="Images/118F36AD-336D-42A4-A69C-0AC54DAFDDB1_1_105_c.jpeg" data-lightbox-alt="C_Studio03 feature image 1" tabindex="0" role="button" aria-label="Open feature image 1"></div>
               <div class="feature-copy">
                 <span>01 / Precision</span>
                 <h3>Minimal layouts that let the image lead.</h3>
@@ -921,7 +997,7 @@
             </article>
 
             <article class="feature-row reverse reveal">
-              <div class="feature-visual two" data-label="Editorial Motion"></div>
+              <div class="feature-visual two" data-label="Editorial Motion" data-lightbox-src="Images/2015BBAC-74A3-498A-8099-C55C9DEB8454_1_105_c.jpeg" data-lightbox-alt="C_Studio03 feature image 2" tabindex="0" role="button" aria-label="Open feature image 2"></div>
               <div class="feature-copy">
                 <span>02 / Rhythm</span>
                 <h3>Alternating sections with a calm, cinematic flow.</h3>
@@ -930,7 +1006,7 @@
             </article>
 
             <article class="feature-row reveal">
-              <div class="feature-visual three" data-label="Future Ready"></div>
+              <div class="feature-visual three" data-label="Future Ready" data-lightbox-src="Images/31F96C73-72A0-491A-9212-563BA8B7CC28_1_105_c.jpeg" data-lightbox-alt="C_Studio03 feature image 3" tabindex="0" role="button" aria-label="Open feature image 3"></div>
               <div class="feature-copy">
                 <span>03 / Flexibility</span>
                 <h3>Ready for your photography, not locked to placeholders.</h3>
@@ -949,7 +1025,7 @@
           </div>
 
           <div class="showcase-flow">
-            <article class="showcase-panel reveal" style="--bg-image: url('Images/5442EDC8-C8A2-48CC-9057-F1929F8A4D3C_1_105_c.jpeg');">
+            <article class="showcase-panel reveal" style="--bg-image: url('Images/5442EDC8-C8A2-48CC-9057-F1929F8A4D3C_1_105_c.jpeg');" data-lightbox-src="Images/5442EDC8-C8A2-48CC-9057-F1929F8A4D3C_1_105_c.jpeg" data-lightbox-alt="C_Studio03 showcase image 1" tabindex="0" role="button" aria-label="Open showcase image 1">
               <div class="showcase-content">
                 <span>Collection One</span>
                 <h3>Light, softened.</h3>
@@ -957,7 +1033,7 @@
               </div>
             </article>
 
-            <article class="showcase-panel reveal" style="--bg-image: url('Images/68EC720A-0C3A-4619-B72C-789DC0D576EA_1_105_c.jpeg');">
+            <article class="showcase-panel reveal" style="--bg-image: url('Images/68EC720A-0C3A-4619-B72C-789DC0D576EA_1_105_c.jpeg');" data-lightbox-src="Images/68EC720A-0C3A-4619-B72C-789DC0D576EA_1_105_c.jpeg" data-lightbox-alt="C_Studio03 showcase image 2" tabindex="0" role="button" aria-label="Open showcase image 2">
               <div class="showcase-content">
                 <span>Collection Two</span>
                 <h3>Form, framed with restraint.</h3>
@@ -965,7 +1041,7 @@
               </div>
             </article>
 
-            <article class="showcase-panel reveal" style="--bg-image: url('Images/8797B104-1FAB-45F2-91B1-C369E829B0A3_1_105_c.jpeg');">
+            <article class="showcase-panel reveal" style="--bg-image: url('Images/8797B104-1FAB-45F2-91B1-C369E829B0A3_1_105_c.jpeg');" data-lightbox-src="Images/8797B104-1FAB-45F2-91B1-C369E829B0A3_1_105_c.jpeg" data-lightbox-alt="C_Studio03 showcase image 3" tabindex="0" role="button" aria-label="Open showcase image 3">
               <div class="showcase-content">
                 <span>Collection Three</span>
                 <h3>Premium by design.</h3>
@@ -1087,6 +1163,11 @@
     </footer>
   </div>
 
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" type="button" aria-label="Close image popup">&times;</button>
+    <img class="lightbox-image" id="lightbox-image" src="" alt="">
+  </div>
+
   <script>
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -1102,6 +1183,53 @@
 
     document.querySelectorAll(".reveal").forEach((element) => {
       observer.observe(element);
+    });
+
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightbox-image");
+    const lightboxClose = document.querySelector(".lightbox-close");
+    const clickableVisuals = document.querySelectorAll("[data-lightbox-src], .photo-card img, .mosaic-card img");
+
+    const openLightbox = (src, alt = "") => {
+      lightboxImage.src = src;
+      lightboxImage.alt = alt;
+      lightbox.classList.add("open");
+      lightbox.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    };
+
+    const closeLightbox = () => {
+      lightbox.classList.remove("open");
+      lightbox.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      lightboxImage.src = "";
+      lightboxImage.alt = "";
+    };
+
+    clickableVisuals.forEach((element) => {
+      const src = element.dataset.lightboxSrc || element.getAttribute("src");
+      const alt = element.dataset.lightboxAlt || element.getAttribute("alt") || "";
+
+      element.addEventListener("click", () => openLightbox(src, alt));
+      element.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openLightbox(src, alt);
+        }
+      });
+    });
+
+    lightboxClose.addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && lightbox.classList.contains("open")) {
+        closeLightbox();
+      }
     });
   </script>
 </body>
