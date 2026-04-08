@@ -208,6 +208,7 @@
       max-width: 52rem;
       text-align: center;
       margin: 0 auto;
+      width: 100%;
     }
 
     .hero h1 {
@@ -249,6 +250,7 @@
       align-items: center;
       justify-content: center;
       min-width: 158px;
+      min-height: 54px;
       padding: 0.95rem 1.5rem;
       border-radius: 999px;
       border: 1px solid transparent;
@@ -637,6 +639,7 @@
       position: relative;
       z-index: 1;
       max-width: 36rem;
+      width: 100%;
     }
 
     .showcase-content span {
@@ -777,6 +780,7 @@
     .lightbox-image {
       max-width: min(92vw, 1400px);
       max-height: 86vh;
+      width: auto;
       border-radius: 24px;
       box-shadow: 0 28px 80px rgba(0, 0, 0, 0.35);
       object-fit: contain;
@@ -868,14 +872,18 @@
       }
     }
 
-    @media (max-width: 767px) {
-      .nav-links {
-        display: none;
+    @media (min-width: 768px) and (max-width: 1080px) {
+      .nav {
+        padding: 0 1.4rem;
       }
 
       .hero-panel {
-        border-radius: 28px;
+        padding: 2.25rem;
         min-height: auto;
+      }
+
+      .hero h1 {
+        font-size: clamp(3.2rem, 9vw, 5.6rem);
       }
 
       .hero-visual {
@@ -883,11 +891,140 @@
       }
 
       .media-card {
-        min-height: 300px;
+        min-height: 420px;
+      }
+
+      .photo-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .photo-card.wide {
+        grid-column: span 3;
+      }
+    }
+
+    @media (max-width: 767px) {
+      :root {
+        --radius-xl: 24px;
+      }
+
+      section {
+        padding: 3.5rem 1rem;
+      }
+
+      .nav {
+        min-height: 64px;
+        padding: 0 1rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .brand {
+        font-size: 1.02rem;
+      }
+
+      .hero {
+        padding-top: 2.25rem;
+        padding-bottom: 2.5rem;
+      }
+
+      .hero-panel {
+        border-radius: 28px;
+        min-height: auto;
+        padding: 1.4rem;
+      }
+
+      .hero-panel::before {
+        width: 20rem;
+        height: 20rem;
+        right: -5rem;
+        bottom: -6rem;
+      }
+
+      .hero-copy {
+        max-width: 100%;
+      }
+
+      .hero h1 {
+        margin-top: 0.9rem;
+        font-size: clamp(2.7rem, 14vw, 4.6rem);
+        line-height: 1.06;
+        letter-spacing: -0.04em;
+      }
+
+      .hero h1 .accent {
+        margin-top: 0.16em;
+      }
+
+      .hero p {
+        max-width: 100%;
+        font-size: 1rem;
+        line-height: 1.65;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+      }
+
+      .button {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .hero-visual {
+        grid-template-columns: 1fr;
+      }
+
+      .media-card {
+        min-height: 280px;
+      }
+
+      .media-card::after,
+      .feature-visual::after {
+        left: 1rem;
+        bottom: 1rem;
       }
 
       .showcase-panel {
-        min-height: 64vh;
+        min-height: 58vh;
+        padding: 1.25rem;
+      }
+
+      .showcase-content h3 {
+        font-size: clamp(2rem, 10vw, 3rem);
+        line-height: 1.02;
+      }
+
+      .showcase-content p {
+        font-size: 0.98rem;
+        line-height: 1.6;
+      }
+
+      .section-heading {
+        margin-bottom: 1.8rem;
+      }
+
+      .section-heading h2 {
+        font-size: clamp(2rem, 11vw, 3rem);
+      }
+
+      .feature-row {
+        gap: 1rem;
+        padding: 0;
+      }
+
+      .feature-visual {
+        min-height: 300px;
+      }
+
+      .feature-copy h3,
+      .editorial-copy h3 {
+        font-size: clamp(1.8rem, 9vw, 2.6rem);
+        line-height: 1.08;
       }
 
       .photo-card,
@@ -896,9 +1033,65 @@
         aspect-ratio: 0.78;
       }
 
+      .photo-grid,
+      .editorial-mosaic {
+        grid-template-columns: 1fr;
+      }
+
+      .photo-card.wide {
+        aspect-ratio: 0.95;
+      }
+
       .mosaic-card.tall {
         grid-row: auto;
         min-height: 220px;
+      }
+
+      .about-card,
+      .contact-panel,
+      .glass-card {
+        padding: 1.2rem;
+      }
+
+      .lightbox {
+        padding: 1rem;
+      }
+
+      .lightbox-image {
+        max-width: 100%;
+        max-height: 78vh;
+        border-radius: 18px;
+      }
+
+      .lightbox-close {
+        top: 0.75rem;
+        right: 0.75rem;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .eyebrow {
+        font-size: 0.7rem;
+        letter-spacing: 0.12em;
+      }
+
+      .hero-panel {
+        padding: 1.1rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.35rem, 13vw, 3.4rem);
+      }
+
+      .media-card,
+      .feature-visual,
+      .mosaic-card,
+      .photo-card {
+        border-radius: 22px;
+      }
+
+      .showcase-panel {
+        min-height: 50vh;
       }
     }
 
