@@ -285,45 +285,233 @@
       font-size: 1rem;
     }
 
+    .about-section {
+      background: #0d0d0d;
+    }
+
     .about-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 0.4fr 0.6fr;
       gap: 2rem;
       align-items: center;
+    }
+
+    .selected-works {
+      overflow: hidden;
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+
+    .slideshow {
+      position: relative;
+      min-height: 72vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .slideshow-stage {
+      position: relative;
+      width: min(100%, 1600px);
+      min-height: 72vh;
+      display: grid;
+      place-items: center;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      pointer-events: none;
+    }
+
+    .slide.is-active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .slide-frame {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      padding: 0 4.5rem;
+    }
+
+    .slide-frame img {
+      width: auto;
+      height: min(70vh, 820px);
+      max-width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: contain;
+      display: block;
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--bg-soft);
+    }
+
+    .slideshow-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 52px;
+      height: 52px;
+      border: 1px solid rgba(201, 169, 110, 0.5);
+      background: rgba(10, 10, 10, 0.32);
+      color: var(--gold);
+      display: grid;
+      place-items: center;
+      font-size: 1.35rem;
+      transition: background 220ms ease, transform 220ms ease;
+      z-index: 3;
+    }
+
+    .slideshow-arrow:hover {
+      background: rgba(201, 169, 110, 0.12);
+    }
+
+    .slideshow-arrow.prev {
+      left: 1rem;
+    }
+
+    .slideshow-arrow.next {
+      right: 1rem;
+    }
+
+    .slideshow-dots {
+      position: absolute;
+      left: 50%;
+      bottom: 1.2rem;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.6rem;
+      z-index: 3;
+    }
+
+    .slideshow-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(201, 169, 110, 0.75);
+      background: transparent;
+      padding: 0;
+      transition: background 220ms ease, transform 220ms ease;
+    }
+
+    .slideshow-dot.is-active {
+      background: var(--gold);
+      transform: scale(1.1);
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9);
+      display: grid;
+      place-items: center;
+      padding: 2rem;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      z-index: 1200;
+    }
+
+    .lightbox.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .lightbox-inner {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      display: grid;
+      place-items: center;
+    }
+
+    .lightbox img {
+      width: auto;
+      height: min(84vh, 900px);
+      max-width: 90vw;
+      aspect-ratio: 3 / 4;
+      object-fit: contain;
+      display: block;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -0.75rem;
+      right: -0.75rem;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(201, 169, 110, 0.7);
+      background: rgba(10, 10, 10, 0.4);
+      color: var(--gold);
+      font-size: 1.5rem;
+      line-height: 1;
+      display: grid;
+      place-items: center;
+      z-index: 2;
     }
 
     .about-photo {
       overflow: hidden;
       border-radius: var(--radius);
       background: var(--bg-soft);
-      min-height: 620px;
+      aspect-ratio: 3 / 4;
+      box-shadow: 18px 18px 0 rgba(201, 169, 110, 0.18);
+      border: 1px solid rgba(201, 169, 110, 0.38);
     }
 
     .about-photo img {
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
+      aspect-ratio: 3 / 4;
+      background: var(--bg-soft);
     }
 
     .about-copy {
-      padding: 1rem 0;
+      padding: 1rem 0 1rem 2rem;
+    }
+
+    .about-label {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: var(--gold);
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      font-size: 0.76rem;
     }
 
     .about-copy h2 {
       margin: 0 0 1.25rem;
     }
 
-    .about-copy p {
+    .about-story {
       margin: 0 0 1.1rem;
       color: var(--muted);
       max-width: 34rem;
     }
 
-    .about-signature {
-      margin-top: 2rem;
-      color: var(--gold);
-      letter-spacing: 0.22em;
+    .about-divider {
+      width: min(180px, 100%);
+      height: 1px;
+      margin: 2rem 0 1.4rem;
+      background: var(--line);
+    }
+
+    .about-stats {
+      display: grid;
+      gap: 0.55rem;
+      color: var(--text);
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
     }
 
     .portfolio-grid {
@@ -338,6 +526,7 @@
       border-radius: 22px;
       background: var(--bg-soft);
       position: relative;
+      cursor: pointer;
     }
 
     .portfolio-item.large {
@@ -532,7 +721,23 @@
       }
 
       .about-photo {
-        min-height: 440px;
+        max-width: 540px;
+      }
+
+      .about-copy {
+        padding-left: 0;
+      }
+
+      .marquee-item img {
+        height: 420px;
+      }
+
+      .slide-frame {
+        padding: 0 3.5rem;
+      }
+
+      .slide-frame img {
+        height: min(64vh, 680px);
       }
 
       .portfolio-item.large,
@@ -612,6 +817,41 @@
         font-size: 0.98rem;
       }
 
+      .selected-works {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+      }
+
+      .slideshow {
+        min-height: 58vh;
+      }
+
+      .slideshow-stage {
+        min-height: 58vh;
+      }
+
+      .slide-frame {
+        padding: 0 2.75rem;
+      }
+
+      .slide-frame img {
+        height: min(54vh, 420px);
+      }
+
+      .slideshow-arrow {
+        width: 42px;
+        height: 42px;
+        font-size: 1.05rem;
+      }
+
+      .slideshow-arrow.prev {
+        left: 0.4rem;
+      }
+
+      .slideshow-arrow.next {
+        right: 0.4rem;
+      }
+
       .portfolio-grid {
         grid-template-columns: 1fr;
       }
@@ -626,6 +866,20 @@
 
       .submit-button {
         width: 100%;
+      }
+
+      .lightbox {
+        padding: 1rem;
+      }
+
+      .lightbox img {
+        height: min(78vh, 560px);
+        max-width: 94vw;
+      }
+
+      .lightbox-close {
+        top: -0.25rem;
+        right: -0.25rem;
       }
     }
   </style>
@@ -662,16 +916,72 @@
       <div class="scroll-indicator" aria-hidden="true"></div>
     </section>
 
-    <section class="section reveal" id="about">
+    <section class="section selected-works reveal" id="selected-works">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Selected Works</h2>
+          <div class="section-copy">A slow-moving editorial ribbon of recent frames, presented in their natural portrait format.</div>
+        </div>
+      </div>
+
+      <div class="slideshow" aria-label="Selected works slideshow">
+        <div class="slideshow-stage" id="selected-works-stage">
+          <article class="slide is-active">
+            <div class="slide-frame"><img src="Images/14B84896-5A43-4A9B-A713-DDCE0307CF3A_1_105_c.jpeg" alt="Selected work 1" loading="lazy" decoding="async"></div>
+          </article>
+          <article class="slide">
+            <div class="slide-frame"><img src="Images/5344E226-57CB-4069-A244-2A2ED79EA12F_1_105_c.jpeg" alt="Selected work 2" loading="lazy" decoding="async"></div>
+          </article>
+          <article class="slide">
+            <div class="slide-frame"><img src="Images/606F208C-B2A5-4BF8-BA4E-EB7F048624BB_1_105_c.jpeg" alt="Selected work 3" loading="lazy" decoding="async"></div>
+          </article>
+          <article class="slide">
+            <div class="slide-frame"><img src="Images/6490D396-04E7-451C-B075-C563E0D20928_1_105_c.jpeg" alt="Selected work 4" loading="lazy" decoding="async"></div>
+          </article>
+          <article class="slide">
+            <div class="slide-frame"><img src="Images/7D4DD3E6-7F04-4257-92B0-E0DCD3A5620B_1_105_c.jpeg" alt="Selected work 5" loading="lazy" decoding="async"></div>
+          </article>
+          <article class="slide">
+            <div class="slide-frame"><img src="Images/8DF74177-8772-4CCB-B15B-FFC5255C7EA0_1_102_o.jpeg" alt="Selected work 6" loading="lazy" decoding="async"></div>
+          </article>
+          <article class="slide">
+            <div class="slide-frame"><img src="Images/904692C5-3D53-4F79-81B0-4BAF6D18D216_1_105_c.jpeg" alt="Selected work 7" loading="lazy" decoding="async"></div>
+          </article>
+          <article class="slide">
+            <div class="slide-frame"><img src="Images/98A2F6E2-D48B-4980-BFFA-1D8446B9A1EF_1_105_c.jpeg" alt="Selected work 8" loading="lazy" decoding="async"></div>
+          </article>
+          <article class="slide">
+            <div class="slide-frame"><img src="Images/9EAEA4FF-160E-4568-B58D-9338DC25F9AC_1_105_c.jpeg" alt="Selected work 9" loading="lazy" decoding="async"></div>
+          </article>
+          <article class="slide">
+            <div class="slide-frame"><img src="Images/CBE49DE8-4A4E-437C-BAD8-A7ADBBFDD235_1_105_c.jpeg" alt="Selected work 10" loading="lazy" decoding="async"></div>
+          </article>
+          <article class="slide">
+            <div class="slide-frame"><img src="Images/D1E5ACDF-AABA-461F-8FA3-D3AFE102C105_1_105_c.jpeg" alt="Selected work 11" loading="lazy" decoding="async"></div>
+          </article>
+
+          <button class="slideshow-arrow prev" id="slideshow-prev" type="button" aria-label="Previous slide">&#8249;</button>
+          <button class="slideshow-arrow next" id="slideshow-next" type="button" aria-label="Next slide">&#8250;</button>
+          <div class="slideshow-dots" id="slideshow-dots" aria-label="Slideshow indicators"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about-section reveal" id="about">
       <div class="container about-grid">
         <div class="about-photo">
-          <img src="Images/14B84896-5A43-4A9B-A713-DDCE0307CF3A_1_105_c.jpeg" alt="Portrait of the photographer">
+          <img src="Images/14B84896-5A43-4A9B-A713-DDCE0307CF3A_1_105_c.jpeg" alt="Portrait of the photographer" loading="lazy" decoding="async">
         </div>
         <div class="about-copy">
-          <h2 class="section-title">About</h2>
-          <p>C_Studio03 is a visual practice rooted in elegance, emotion, and restraint. Every frame is shaped with a gallery mindset, where light, texture, and silence are treated as part of the composition.</p>
-          <p>From portraiture to wedding narratives and editorial stories, the work is guided by a refined minimalism that allows people, atmosphere, and memory to take center stage.</p>
-          <div class="about-signature">Artfully composed. Intentionally timeless.</div>
+          <div class="about-label">About The Artist</div>
+          <h2 class="section-title">C_Studio03</h2>
+          <p class="about-story">I create portrait-led imagery with an editorial sensibility, drawn to quiet gestures, soft light, and the emotional texture that lives between posed moments. My approach is rooted in restraint, allowing each frame to feel elegant without ever losing its humanity. Whether I am photographing a single subject or an unfolding celebration, I look for atmosphere, intimacy, and timeless composition. The goal is always to turn fleeting moments into images that feel deeply personal and enduring.</p>
+          <div class="about-divider"></div>
+          <div class="about-stats">
+            <div>Based in Singapore</div>
+            <div>Available Worldwide</div>
+            <div>Portrait, Editorial, Wedding</div>
+          </div>
         </div>
       </div>
     </section>
@@ -684,13 +994,13 @@
         </div>
 
         <div class="portfolio-grid">
-          <article class="portfolio-item large"><img src="Images/5344E226-57CB-4069-A244-2A2ED79EA12F_1_105_c.jpeg" alt="Portfolio image one"></article>
-          <article class="portfolio-item medium"><img src="Images/606F208C-B2A5-4BF8-BA4E-EB7F048624BB_1_105_c.jpeg" alt="Portfolio image two"></article>
-          <article class="portfolio-item small"><img src="Images/6490D396-04E7-451C-B075-C563E0D20928_1_105_c.jpeg" alt="Portfolio image three"></article>
-          <article class="portfolio-item tall"><img src="Images/7D4DD3E6-7F04-4257-92B0-E0DCD3A5620B_1_105_c.jpeg" alt="Portfolio image four"></article>
-          <article class="portfolio-item wide"><img src="Images/904692C5-3D53-4F79-81B0-4BAF6D18D216_1_105_c.jpeg" alt="Portfolio image five"></article>
-          <article class="portfolio-item small"><img src="Images/98A2F6E2-D48B-4980-BFFA-1D8446B9A1EF_1_105_c.jpeg" alt="Portfolio image six"></article>
-          <article class="portfolio-item medium"><img src="Images/9EAEA4FF-160E-4568-B58D-9338DC25F9AC_1_105_c.jpeg" alt="Portfolio image seven"></article>
+          <article class="portfolio-item large"><img src="Images/5344E226-57CB-4069-A244-2A2ED79EA12F_1_105_c.jpeg" alt="Portfolio image one" loading="lazy" decoding="async"></article>
+          <article class="portfolio-item medium"><img src="Images/606F208C-B2A5-4BF8-BA4E-EB7F048624BB_1_105_c.jpeg" alt="Portfolio image two" loading="lazy" decoding="async"></article>
+          <article class="portfolio-item small"><img src="Images/6490D396-04E7-451C-B075-C563E0D20928_1_105_c.jpeg" alt="Portfolio image three" loading="lazy" decoding="async"></article>
+          <article class="portfolio-item tall"><img src="Images/7D4DD3E6-7F04-4257-92B0-E0DCD3A5620B_1_105_c.jpeg" alt="Portfolio image four" loading="lazy" decoding="async"></article>
+          <article class="portfolio-item wide"><img src="Images/904692C5-3D53-4F79-81B0-4BAF6D18D216_1_105_c.jpeg" alt="Portfolio image five" loading="lazy" decoding="async"></article>
+          <article class="portfolio-item small"><img src="Images/98A2F6E2-D48B-4980-BFFA-1D8446B9A1EF_1_105_c.jpeg" alt="Portfolio image six" loading="lazy" decoding="async"></article>
+          <article class="portfolio-item medium"><img src="Images/9EAEA4FF-160E-4568-B58D-9338DC25F9AC_1_105_c.jpeg" alt="Portfolio image seven" loading="lazy" decoding="async"></article>
         </div>
       </div>
     </section>
@@ -759,6 +1069,13 @@
         </a>
       </div>
     </footer>
+  </div>
+
+  <div class="lightbox" id="portfolio-lightbox" aria-hidden="true">
+    <div class="lightbox-inner">
+      <button class="lightbox-close" id="lightbox-close" type="button" aria-label="Close image">&times;</button>
+      <img id="lightbox-image" src="" alt="">
+    </div>
   </div>
 
   <script>
@@ -837,6 +1154,111 @@
         navToggle.classList.remove("is-open");
         navToggle.setAttribute("aria-expanded", "false");
       });
+    });
+
+    // Selected works slideshow.
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    const dotsContainer = document.getElementById("slideshow-dots");
+    const prevSlideButton = document.getElementById("slideshow-prev");
+    const nextSlideButton = document.getElementById("slideshow-next");
+    let activeSlideIndex = 0;
+    let slideshowTimer;
+
+    const renderDots = () => {
+      slides.forEach((_, index) => {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "slideshow-dot" + (index === activeSlideIndex ? " is-active" : "");
+        dot.setAttribute("aria-label", `Go to slide ${index + 1}`);
+        dot.addEventListener("click", () => {
+          setSlide(index);
+          resetSlideshowTimer();
+        });
+        dotsContainer.appendChild(dot);
+      });
+    };
+
+    const updateSlides = () => {
+      slides.forEach((slide, index) => {
+        slide.classList.toggle("is-active", index === activeSlideIndex);
+      });
+
+      dotsContainer.querySelectorAll(".slideshow-dot").forEach((dot, index) => {
+        dot.classList.toggle("is-active", index === activeSlideIndex);
+      });
+    };
+
+    const setSlide = (index) => {
+      activeSlideIndex = (index + slides.length) % slides.length;
+      updateSlides();
+    };
+
+    const nextSlide = () => {
+      setSlide(activeSlideIndex + 1);
+    };
+
+    const previousSlide = () => {
+      setSlide(activeSlideIndex - 1);
+    };
+
+    const resetSlideshowTimer = () => {
+      window.clearInterval(slideshowTimer);
+      slideshowTimer = window.setInterval(nextSlide, 5000);
+    };
+
+    if (slides.length) {
+      renderDots();
+      updateSlides();
+      resetSlideshowTimer();
+      nextSlideButton.addEventListener("click", () => {
+        nextSlide();
+        resetSlideshowTimer();
+      });
+      prevSlideButton.addEventListener("click", () => {
+        previousSlide();
+        resetSlideshowTimer();
+      });
+    }
+
+    // Portfolio lightbox.
+    const portfolioImages = document.querySelectorAll("#work .portfolio-item img");
+    const lightbox = document.getElementById("portfolio-lightbox");
+    const lightboxImage = document.getElementById("lightbox-image");
+    const lightboxClose = document.getElementById("lightbox-close");
+
+    const openLightbox = (src, alt) => {
+      lightboxImage.src = src;
+      lightboxImage.alt = alt || "";
+      lightbox.classList.add("is-open");
+      lightbox.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    };
+
+    const closeLightbox = () => {
+      lightbox.classList.remove("is-open");
+      lightbox.setAttribute("aria-hidden", "true");
+      lightboxImage.src = "";
+      lightboxImage.alt = "";
+      document.body.style.overflow = "";
+    };
+
+    portfolioImages.forEach((image) => {
+      image.addEventListener("click", () => {
+        openLightbox(image.getAttribute("src"), image.getAttribute("alt"));
+      });
+    });
+
+    lightboxClose.addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && lightbox.classList.contains("is-open")) {
+        closeLightbox();
+      }
     });
 
     // Prevent demo form submission.
